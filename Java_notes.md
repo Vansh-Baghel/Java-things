@@ -96,3 +96,5 @@
 * The worst case here can be log(N)/log(2) where N is the length of array.
 * We find the middle element in a **sorted** array and will ignore the elements before and after it depending on the element we want to find.
 * The index number doesnt change after ignoring the rest elements, ie , we dont reduce the original array.
+* mid formula must be **start + (end - start)/2** because **start + end** might exceed the range of int sometimes . Bith will give same answer.
+
