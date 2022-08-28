@@ -92,9 +92,15 @@
 ## Linear search
 * It will search each element one by one to find any element.
 
-## Binary Search
+## Binary Search 
+* The array must be sorted ascending or descending for using this.
 * The worst case here can be log(N)/log(2) where N is the length of array.
 * We find the middle element in a **sorted** array and will ignore the elements before and after it depending on the element we want to find.
 * The index number doesnt change after ignoring the rest elements, ie , we dont reduce the original array.
 * mid formula must be **start + (end - start)/2** because **start + end** might exceed the range of int sometimes . Bith will give same answer.
 
+## Ceiling and Floor using binary
+* If we want ceiling index of target number (target is not present) ie the next number greater than target element , will return **start** instead of -1 of regular.
+* If floor , then return **end** ie the number greatest among the smallest element than target.
+* Because if target element is not present then in the last condition only one element remains which will be start , mid and end altogether. Then target will be greater than that number , so end will be that number, start will become mid + 1 , therefore the next element than end element. Here while loop break because end is smaller than start.
+* If target is smaller than mid when only 1 element is left then the end element (mid - 1) will become -1 and start element will be that element itself. Even here the ceiling will be start element and floor be the end element ie -1 .
