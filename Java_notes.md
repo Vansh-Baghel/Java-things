@@ -106,5 +106,8 @@
 * If target is smaller than mid when only 1 element is left then the end element (mid - 1) will become -1 and start element will be that element itself. Even here the ceiling will be start element and floor be the end element ie -1 .
 * **Condition** :- Print 1st element from arrayList if the tsrget is bigger than the last element. Here will return **array[start % array.length]** or **if (array[start] == array.length) return 0;**. As in the end only 1 element remains and **start** element will be (mid + 1) ie 1 index more than end. Now as start is 0, 
 
+## Start and end index of element in array
+* Use binary search , and use another binary at the place where we find the target ie in the last else stmt.
+* If there is another target before ans, search it and will get first index. Else go for last index
 
 
