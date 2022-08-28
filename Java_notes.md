@@ -90,4 +90,9 @@
 * Used to convert String into array of characters.
 
 ## Linear search
-* 
+* It will search each element one by one to find any element.
+
+## Binary Search
+* The worst case here can be log(N)/log(2) where N is the length of array.
+* We find the middle element in a **sorted** array and will remove the elements before and after it depending on the element we want to find.
+* It 
