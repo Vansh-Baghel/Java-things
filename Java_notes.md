@@ -69,6 +69,8 @@
 ## Multidimensional arrays
 * In this , we use brackets wrt its dimensions.
 * The datatype of this array is *array* itself. Keep this in mind because we specify it while use advanced for loop (forEach).
+* To use for loop for each array element, we run 2 for loops. 1 for rows and another to go through each element of the column. 
+* The size of 2nd for loop will be smaller than **arr[row].length** ie the size of that row k elements.
 
 ## ArrayList list
 * We use this when we dont know the length of array.
