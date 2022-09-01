@@ -126,5 +126,5 @@
 ## Stated and unstated sorting algorithms
 * In stated sorting algorithms, the original order is maintained. While in unstable, it is not maintained.
 * If two numbers are same , so while sorting , the first number occurrence must be at first, and later occurrence must be second then its stable. Otherwise if first occurrence goes to second, it becomes unstable.
-
+* **Break** the loop after the inner for loop if the swap didnt take place
 
