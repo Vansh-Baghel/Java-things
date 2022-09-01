@@ -112,4 +112,14 @@
 * Use binary search , and use another binary at the place where we find the target ie in the last else stmt.
 * If there is another target before ans, search it and will get first index. Else go for last index
 
+# Sorting
+
+## Bubble Sort
+* In this we sort the array in ascending or descending order by using 2 for loops.
+* The inner for loop will be lesser than **arr.length - i** because in each iteration we see largest number in the end so to sort smaller number, we dont need to check it with the large numbers again and again.
+* If arr[j] > arr[i] , means thr array is sorted as no swapping is being done so we can stop the iterations.
+
+## Space complexity
+* When we creatr a new array , it takes more space.
+* In bubble sort, it is **inplace sorting algorithm** means the sorting will take place there itself and no more space is required like copying or creating a new array is not required.
 
