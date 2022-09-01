@@ -135,3 +135,8 @@
 * Used to sort small arrays.
 * Make 2 functions to find the maximum number and to swap the numbers .
 
+## Cyclic sort
+* When the numbers are given in certain range ie from 1 to N , use cyclic sort.
+* This is the best sorting as the steps are very less.
+* The index of element is *element - 1* .
+* So while swapping we can directly pass the elements to their index box and check whether that index already cintains the element or not because if it does then that means that sorting has already been completed.
