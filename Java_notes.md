@@ -118,6 +118,7 @@
 * In this we sort the array in ascending or descending order by using 2 for loops.
 * The inner for loop will be lesser than **arr.length - i** because in each iteration we see largest number in the end so to sort smaller number, we dont need to check it with the large numbers again and again.
 * If arr[j] > arr[i] , means thr array is sorted as no swapping is being done so we can stop the iterations.
+* Best case: - O(N) and worst case: - O(N^2).
 
 ## Space complexity
 * When we creatr a new array , it takes more space.
@@ -126,5 +127,11 @@
 ## Stated and unstated sorting algorithms
 * In stated sorting algorithms, the original order is maintained. While in unstable, it is not maintained.
 * If two numbers are same , so while sorting , the first number occurrence must be at first, and later occurrence must be second then its stable. Otherwise if first occurrence goes to second, it becomes unstable.
-* **Break** the loop after the inner for loop if the swap didnt take place
+* **Break** the loop after the inner for loop if the swap didnt take place.
+
+## Selection sort
+* It is not stable sortint algorithm.
+* The best and worse case complexity are the same ie O(N^2).
+* Used to sort small arrays.
+* Make 2 functions to find the maximum number and to swap the numbers .
 
