@@ -123,3 +123,8 @@
 * When we creatr a new array , it takes more space.
 * In bubble sort, it is **inplace sorting algorithm** means the sorting will take place there itself and no more space is required like copying or creating a new array is not required.
 
+## Stated and unstated sorting algorithms
+* In stated sorting algorithms, the original order is maintained. While in unstable, it is not maintained.
+* If two numbers are same , so while sorting , the first number occurrence must be at first, and later occurrence must be second then its stable. Otherwise if first occurrence goes to second, it becomes unstable.
+
+
