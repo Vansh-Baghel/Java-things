@@ -169,4 +169,6 @@
 * **toCharArray()** prints the entire string in the form of chars as an array.
 * **split** is used to cut the string into an array which will separate the string from the value we pass inside split paranthesis. 
 
+## Pattern printing
+**Steps**
 
