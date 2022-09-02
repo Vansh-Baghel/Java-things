@@ -54,6 +54,7 @@
 
 ## Function overloading
 * When 2 functions have same names and return types but different arguments .
+* If args are same only then it will give error, otherwise u can use both the functions by giving required parameter values wrt arguments mentioned.
 
 ## Pass by value
 * In java , there is only pass by value and not pass by reference . 
@@ -140,3 +141,11 @@
 * This is the best sorting as the steps are very less.
 * The index of element is *element - 1* .
 * So while swapping we can directly pass the elements to their index box and check whether that index already cintains the element or not because if it does then that means that sorting has already been completed.
+
+# Strings
+
+## Pool
+* Pool is inside the heap where it avoids the recreation of a value,
+* Strings with same values point at same object. Hence if we change any one variable , it will change the value and all the variables pointing to that value will change. Therefore strings are **mutable** ie we cannot change string once defined.
+
+
