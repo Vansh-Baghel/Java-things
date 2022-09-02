@@ -145,5 +145,7 @@
 # Strings
 
 ## Pool
-* Pool is inside the heap where it avoids the 
+* Pool is inside the heap where it avoids the recreation of a value,
+* Strings with same values point at same object. Hence if we change any one variable , it will change the value and all the variables pointing to that value will change. Therefore strings are **mutable** ie we cannot change string once defined.
+
 
