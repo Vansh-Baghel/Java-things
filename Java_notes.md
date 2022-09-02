@@ -147,5 +147,26 @@
 ## Pool
 * Pool is inside the heap where it avoids the recreation of a value,
 * Strings with same values point at same object. Hence if we change any one variable , it will change the value and all the variables pointing to that value will change. Therefore strings are **mutable** ie we cannot change string once defined.
+* We can also explicitly add a string which will store the data outside the heap pool but inside the heap . By all the reference variable will point to the different values even if the values are same. 
+
+## Place Holders 
+* We can print the datatypes by using the place holders in java , it is the same thing like format specifier of C .
+* For float , to print numbers till 2 decimals we use .2f% , and to print n values after decimal we use .nf% .
+
+## Double and Single apostrophe difference 
+* We use single apostrophe to print the characters and if we add 2 chars , it will simply print the addition of both the char's ascii value.
+* We use double apostrophe to print the string and if we add 2 string, it will concatinate them.
+* We can explicitly use **char** keyword to add an int with the char to get the char value . The char value will be like addition of the ascii number of first char with the int value.
+* Otherwise if we add char and int , it will convert the int into toString automatically and add it with the char.
+
+## StringBuilder class
+* String builder is same as string just the difference is stringbuilder is **mutable** and strings are immutable.
+* Whenever we run a loop in string , it keeps creating new objects in the pool inside heap which reduces the performance and increases the space.
+
+## Methods in string
+* There are many predefined methods in string . 
+* Like when we use **length** for string , we need to add paranthesis because its a function .
+* **toCharArray()** prints the entire string in the form of chars as an array.
+* **split** is used to cut the string into an array which will separate the string from the value we pass inside split paranthesis. 
 
 
