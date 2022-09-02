@@ -141,3 +141,9 @@
 * This is the best sorting as the steps are very less.
 * The index of element is *element - 1* .
 * So while swapping we can directly pass the elements to their index box and check whether that index already cintains the element or not because if it does then that means that sorting has already been completed.
+
+# Strings
+
+## Pool
+* Pool is inside the heap where it avoids the 
+
