@@ -54,6 +54,7 @@
 
 ## Function overloading
 * When 2 functions have same names and return types but different arguments .
+* If args are same only then it will give error, otherwise u can use both the functions by giving required parameter values wrt arguments mentioned.
 
 ## Pass by value
 * In java , there is only pass by value and not pass by reference . 
