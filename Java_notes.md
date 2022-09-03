@@ -231,4 +231,9 @@
 ## Reason to ignore less dominating terms
 
 * The reason is that they are negligible,like if one value is 1 mil cube and another is 6sec,so we can definitely ignore 6sec.
-* 
+
+
+## Upper bound (O)
+* The O notation says that the complexity/graph will not exceed more than the given value. Eg: - If O(N^3) is given then geaph can be O(N^2) but not more than O(N^3).
+* Mathematical representation: - 
+  
