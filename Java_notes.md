@@ -258,3 +258,4 @@
 * It is the **extra** space taken by algorithm and the input space.
 * **Auxiliary space** is the space which is extra space taken by an algorithm.
 * Eg: - In binary search, there was no auxiliary space as we were creating 3 variables s, mid , e and those 3 were only used for any range.
+* If no new array is created, then it is O(1) ie O(constant).
