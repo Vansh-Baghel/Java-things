@@ -245,3 +245,16 @@
 
 ## Big theta notation 
 * Combination of Oh and Omega. Here both upper and lower bound is N^2. 
+
+## Little O notation 
+* Also giving upper bound, we can say that it is loss upper bound.
+* Difference is that it is strictly upper bound ie here f < g and in big O , f <= g.
+
+
+## Little omega
+* Strictly lower bound.
+
+## Space complexity
+* It is the **extra** space taken by algorithm and the input space.
+* **Auxiliary space** is the space which is extra space taken by an algorithm.
+* Eg: - In binary search, there was no auxiliary space as we were creating 3 variables s, mid , e and those 3 were only used for any range.
