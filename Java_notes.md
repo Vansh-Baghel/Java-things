@@ -225,3 +225,5 @@
 # Time complexity
 * Time complexity does not **equal** to time taken .
 * Time complexity is the function that tells how much time will grow wrt how much the input grows.
+* Always think about the bigger number cases, ignore the small sized range.
+* Time taken order: - Linear O(N) > O(log N) > O(1) constant .
