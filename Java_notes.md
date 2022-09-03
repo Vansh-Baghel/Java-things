@@ -223,7 +223,7 @@
 * We can update the arguments while calling according to the conditions .
 
 # Time complexity
-* Time complexity does not **equal** to time taken .
+* Time complexity does not **equal** to time taken becuase it depends on machine to machine.
 * Time complexity is the function that tells how much time will grow wrt how much the input grows.
-* Always think about the bigger number cases, ignore the small sized range.
+* Always think about the bigger number cases, ignore the small sized range becuase if code is optimised it will handle it by itself, but problem arises when the data increases by large amount.
 * Time taken order: - Linear O(N) > O(log N) > O(1) constant .
