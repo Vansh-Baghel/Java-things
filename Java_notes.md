@@ -184,4 +184,6 @@
 ## Recursive tree
 * When the flow goes back to the function where it was called after completion then its cslled recursive tree.
 
-
+## Tail recursion
+* When we have last function call then its called tail recursion.
+* When we do additional steps like adding or return , then its not tail recursion.
