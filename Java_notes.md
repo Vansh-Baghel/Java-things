@@ -226,4 +226,9 @@
 * Time complexity does not **equal** to time taken becuase it depends on machine to machine.
 * Time complexity is the function that tells how much time will grow wrt how much the input grows.
 * Always think about the bigger number cases, ignore the small sized range becuase if code is optimised it will handle it by itself, but problem arises when the data increases by large amount.
-* Time taken order: - Linear O(N) > O(log N) > O(1) constant .
+* Time taken order: - **O(2^N) > Linear O(N) > O(log N) > O(1) constant** .
+
+## Reason to ignore less dominating terms
+
+* The reason is that they are negligible,like if one value is 1 mil cube and another is 6sec,so we can definitely ignore 6sec.
+* 
