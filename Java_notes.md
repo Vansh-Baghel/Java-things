@@ -174,5 +174,5 @@
 * Once the work is done , it will flow back to **line where it the function was called**.
 * So the function remains in stack till its work it done, the first function which comes is removed in the end. The very first function of any code is **main** function.
 * There must be a **base** function to stop the execution of the recursive function .
-* If base function is not presrnt , then **stack
+* If base function is not presrnt , then **stack overflow** will take place ie the new functions will keep on getting added in the stack till 5he memory exceeds.
 
