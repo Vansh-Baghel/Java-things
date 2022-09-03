@@ -202,8 +202,15 @@
   d. Use debugger to see the flow.
 5. See where the functions are getting returned once its finished and what type of values are getting out.
 
- 
+ ## Types of recursive statements
+ 1. Linear recursive statement :- When we are adding or subtracting any value from recursion. For eg:- **fibonacci** number, there we are subtracting n by 2.
+ 2. Divide and conquere recursive stmt: - When we divide the n by 2 . Eg: - **Binary** search using recursion.
   
+## Binary search using recursion
+* Binary search is done in 2 steps: -
+1. It will compare, ie, the time complexity which we have is same for any range . It doesnt depend on the size of array.
+2. It will divide the range into 2 parts ie N will be N/2.
+* Recursive formula of binary search is therefore **O(1) + F(N/2)**.
 
 
 
