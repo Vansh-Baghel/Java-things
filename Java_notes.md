@@ -176,3 +176,11 @@
 * There must be a **base** function to stop the execution of the recursive function .
 * If base function is not presrnt , then **stack overflow** will take place ie the new functions will keep on getting added in the stack till 5he memory exceeds.
 
+## Why to use recursion
+* It helps us break bigger problens into smaller problems.
+* We can convert it into iterstion and vice versa.
+* Space complexity is not constant, as functions are getting created everytime.
+
+
+
+
