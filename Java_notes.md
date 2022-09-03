@@ -181,6 +181,7 @@
 * We can convert it into iterstion and vice versa.
 * Space complexity is not constant, as functions are getting created everytime.
 
-
+## Recursive tree
+* When the flow goes back to the function where it was called after completion then its cslled recursive tree.
 
 
