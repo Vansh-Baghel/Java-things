@@ -187,3 +187,23 @@
 ## Tail recursion
 * When we have last function call then its called tail recursion.
 * When we do additional steps like adding or return , then its not tail recursion.
+
+## Recursive relation
+* When we make the formula for recursion then its called recursive relation.
+
+## Steps to solve recursion
+1. Break problem into smaller steps if possible.
+2. Write recursive relation if needed.
+3. Draw the recursive tree.
+4. About the tree: -
+  a. See the flow of left tree cells and right tree cells like which is executing first.
+  b. See the flow of function that how are they getting stacked.
+  c. Draw the tree and pointer again and again using **pen and paper**.
+  d. Use debugger to see the flow.
+5. See where the functions are getting returned once its finished and what type of values are getting out.
+
+ 
+  
+
+
+
