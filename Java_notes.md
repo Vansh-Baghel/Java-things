@@ -233,7 +233,15 @@
 * The reason is that they are negligible,like if one value is 1 mil cube and another is 6sec,so we can definitely ignore 6sec.
 
 
-## Upper bound (O)
+## Big Oh notations (O)
+* Also known as **Upper bound**.
 * The O notation says that the complexity/graph will not exceed more than the given value. Eg: - If O(N^3) is given then geaph can be O(N^2) but not more than O(N^3).
 * Mathematical representation: - 
   
+## Big omega notation 
+* Also known as **lower bound**.
+* Opposite of Upper bound, ie if omega(N^3) is given then graph cannot be lower than N^3 . It will be equal or bigger than it.
+
+
+## Big theta notation 
+* Combination of Oh and Omega. Here both upper and lower bound is N^2. 
