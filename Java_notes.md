@@ -221,3 +221,7 @@
 * Pass start and end in the arguments, and let mid be variable because mid can change for other ranges.
 * Use return stmts whenever we want to return any recursive function.
 * We can update the arguments while calling according to the conditions .
+
+# Time complexity
+* Time complexity does not **equal** to time taken .
+* Time complexity is the function that tells how much time will grow wrt how much the input grows.
