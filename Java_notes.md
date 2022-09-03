@@ -173,4 +173,6 @@
 * The functions are stired in the stack once it starts executing and will get out once its task is done.
 * Once the work is done , it will flow back to **line where it the function was called**.
 * So the function remains in stack till its work it done, the first function which comes is removed in the end. The very first function of any code is **main** function.
+* There must be a **base** function to stop the execution of the recursive function .
+* If base function is not presrnt , then **stack
 
