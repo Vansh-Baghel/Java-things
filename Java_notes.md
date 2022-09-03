@@ -169,4 +169,8 @@
 * **toCharArray()** prints the entire string in the form of chars as an array.
 * **split** is used to cut the string into an array which will separate the string from the value we pass inside split paranthesis. 
 
+# Recursion
+* The functions are stired in the stack once it starts executing and will get out once its task is done.
+* Once the work is done , it will flow back to **line where it the function was called**.
+* So the function remains in stack till its work it done, the first function which comes is removed in the end. The very first function of any code is **main** function.
 
