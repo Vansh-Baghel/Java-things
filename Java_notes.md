@@ -212,5 +212,11 @@
 2. It will divide the range into 2 parts ie N will be N/2.
 * Recurrence relation of binary search is therefore **O(1) + F(N/2)**.
 
+## Arguments of recursive function
+* Whatever we need in future functions we must mention it in the **arguments** of function.
+* Whatever is changable , make it as variables.
 
+## Binary using recursive
 
+* Pass start and end in the arguments, and let mid be variable because mid can change for other ranges.
+* Use return stmts whenever we want to return any recursive function.
