@@ -171,4 +171,8 @@
 
 ## Pattern printing
 **Steps**
+* 1. No of lines = no of rows .
+* 2. Check how many cols are there .
+* 3. What to print , try to find the formula related to row and col.
 
+      
