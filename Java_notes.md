@@ -169,13 +169,14 @@
 * **toCharArray()** prints the entire string in the form of chars as an array.
 * **split** is used to cut the string into an array which will separate the string from the value we pass inside split paranthesis. 
 
-<<<<<<< HEAD
+
 ## Pattern printing
 **Steps**
 * 1. No of lines = no of rows .
 * 2. Check how many cols are there .
 * 3. What to print , try to find the formula related to row and col.
-=======
+
+
 # Recursion
 * The functions are stired in the stack once it starts executing and will get out once its task is done.
 * Once the work is done , it will flow back to **line where it the function was called**.
@@ -257,7 +258,6 @@
 * Also giving upper bound, we can say that it is loss upper bound.
 * Difference is that it is strictly upper bound ie here f < g and in big O , f <= g.
 
-
 ## Little omega
 * Strictly lower bound.
 
@@ -270,6 +270,4 @@
 * If no new array is created, then it is O(1) ie O(constant).
 * For recursive programs, the space complexity is not constant because new functions are created in stack at every step. 
 
->>>>>>> 913098384e9de169a88f360eeeb09343d29694e0
 
-      
