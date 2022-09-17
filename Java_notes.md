@@ -63,7 +63,7 @@
 ## Advanced for loop (type refName : variable)
 * This for loop is like forEach .
 
-## Arrays.toString
+## Recursion.Arrays.toString
 * This will print all the arrays and we dont need to use iteration .
 * This works as an iterator itself to print the values.
 
@@ -77,6 +77,7 @@
 * We use this when we dont know the length of array.
 * We use **new** keyword while declaring it.
 * We use **wrapper** class to specify the datatype .
+* Use ArrayList whenever we want to **append** during **loops or recursion** based on any condition. 
 * We initialize this array which is done using **for** loop and we use **add** keyword to append the values in it .
 
 ## list 
@@ -118,8 +119,13 @@
 ## Bubble Sort
 * In this we sort the array in ascending or descending order by using 2 for loops.
 * The inner for loop will be lesser than **arr.length - i** because in each iteration we see largest number in the end so to sort smaller number, we dont need to check it with the large numbers again and again.
-* If arr[j] > arr[i] , means thr array is sorted as no swapping is being done so we can stop the iterations.
+* If arr[j] *<* arr[j - 1] , means swap. In this way , the j loop will end once that value reaches the end. Then for another i the loop will start workin.
 * Best case: - O(N) and worst case: - O(N^2).
+
+## Cycle Sort
+* Use Cycle Sort whenever the range is specified like from 1 till N numbers.
+* If range starts from 0 , then the value = index. IF the range starts from 1, then the value = index - 1.
+
 
 ## Space complexity
 * When we creatr a new array , it takes more space.
@@ -131,7 +137,8 @@
 * **Break** the loop after the inner for loop if the swap didnt take place.
 
 ## Selection sort
-* It is not stable sortint algorithm.
+* It is not stable sorting algorithm.
+* Not a good method to use because there are 2 for loop running , and one swap function . Everytime it finds the max value and shift it in the end.
 * The best and worse case complexity are the same ie O(N^2).
 * Used to sort small arrays.
 * Make 2 functions to find the maximum number and to swap the numbers .
@@ -178,11 +185,15 @@
 
 
 # Recursion
-* The functions are stired in the stack once it starts executing and will get out once its task is done.
-* Once the work is done , it will flow back to **line where it the function was called**.
-* So the function remains in stack till its work it done, the first function which comes is removed in the end. The very first function of any code is **main** function.
+* The functions are stored in the stack once it starts executing and will get out once its task is done.
+* Once the work is done , it will flow back to **line where the function was called**.
+> Next point very important 
+* If we change an array in one recursive call , then it will change for all the recursive calls because they all point at the same box in the memory and they are changed via **reference variable**. So whenever we put arguments in the function it will give that value to the past recursion and in this way the value reaches the main as a tree flow.
+* So the function remains in stack till its work is done, the first function which comes is removed in the very end. The very first function of any code is **main** function.
 * There must be a **base** function to stop the execution of the recursive function .
 * If base function is not presrnt , then **stack overflow** will take place ie the new functions will keep on getting added in the stack till 5he memory exceeds.
+* Use **return** keyword whenever we want to return any datatype in the function . Like if the function wants an int , then while calling the recursive function we must **return** the recursive function. Its common sense that if the upper function wants to return something then all the below function must also return that thing. 
+
 
 ## Why to use recursion
 * It helps us break bigger problens into smaller problems.
@@ -270,4 +281,49 @@
 * If no new array is created, then it is O(1) ie O(constant).
 * For recursive programs, the space complexity is not constant because new functions are created in stack at every step. 
 
+# Binary 
 
+## Find negative of number 
+* First complement the number and add it by 1.
+
+## Get the last number
+* To get the last binary code number , we can use **n & (-n)**.
+* This will get us the last number.
+
+# Maths for DSA
+
+## Prime number concept
+* If a number is prime , then only check the multiples below its **sqrt**, because rest of the above numbers are just repeated to be checked. Like whats the meaning of checking **3** and **12** both for number **36** if we know that 36 comes in 3 already.
+* So always put **sqrt** condition in the **while** loop and the **modulo** statement inside **if** condition which will be inside **while** loop .
+
+## GCD/HCF
+* 
+
+## LCM
+* 
+
+## Insertion Sort
+* Insertion Sort works well with **partially sorted datatype** therefore it takes part in **hybrid sorting** algorithms.
+* It is stable sorting.
+* **Steps reduced** compared to bubble sort because we skip the step if the next number is larger than the number.
+
+## Quick Sort
+* It is preferred over the merge sort , as it doesnt create a new array to store the values.
+* Quick sort contains 4 variables ie start, end , low, high .
+* Pivot is basically a random numbers which must have all the lower numbers on the left hand side and all the larger numbers on the right hand side . It is put into correct position when the while loop breaks and then the task of sorting takes place again .
+* Here after the while loop breaks , ie when end < start , then we sort the low and end & start and high . By this , we sort both the sides of pivot.
+
+# Recursive Strings
+## Skip Char and Strings 
+* **substring** method creates a new array from the original array without changing it , also we know that strings are **immutable**. The part we want in new array could be described using the index numbers . If only 1 index is mentioned then it means that all the char after it will be the new array.
+* The string will be divided into 2 halves.
+* **isEmpty** and **startsWith** are the 2 more inbuilt string methods which we are using here. 
+
+## Subset
+* All the elements from a string can form arrays with 1 or more elements of the string , and these elements must be in the given order . Like if string is "abc" then a substring cannot be \[c, a].
+* There are many substrings for a string.
+* The pattern of taking some elements and removing some elements is known as **subset pattern**. By this pattern , we can easily find the possible answers for a particular string.
+
+## Permutations
+* Either it could be added on the **left or on the right** .
+* If there are n numbers , then **n!** permutations are possible .
