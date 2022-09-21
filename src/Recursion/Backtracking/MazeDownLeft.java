@@ -1,14 +1,14 @@
-package Recursion.backtracking;
+package Recursion.Backtracking;
 
 import java.util.ArrayList;
 
-public class Maze {
+public class MazeDownLeft {
     public static void main(String[] args) {
         System.out.println(count(3,3));
         mazePath("", 3 , 3);
         System.out.println(mazePathArray("" , 3 , 3));
     }
-    
+
     static int count(int r, int c) {
 //        If any of the element of row or column reaches 1 ie the last row or column then we know that theres only 1 path to reach the ans. So if any of the condition is true , then we increment the count.
         if (r == 1 || c == 1){
