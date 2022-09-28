@@ -331,3 +331,35 @@
 ## Combination Sum (Leetcode)
 [Permutation Pattern](https://leetcode.com/problems/combination-sum/discuss/1777569/FULL-EXPLANATION-WITH-STATE-SPACE-TREE-oror-Recursion-and-Backtracking-oror-Well-Explained-oror-C%2B%2B)
 
+# OOP
+## Classes and objects 
+* Java classes are **template** of objects.
+* Java objects are **instances** of Java classes.
+* Java classes creates **datatype** which is used to create objects.
+* Java classes are just logical construct and objects are the one which is physical reality ie it occupies the space of memory.
+* Inside objects there are variables, which are known as **instance variables**. So variables defined inside objects are known as **instance variables**. These objects are **instances* of classes**.
+
+## Dot operator
+* **Dot** operator is used to link instance objects with instances variables.
+* ie used to connect variables with its object.
+
+## new keyword explanation & class memory allocation
+* To create an object for a class, we use *new* keyword
+* All class objects in java must be allocated dynamically . For this we can use **new** keyword which allocates the new memory to that object
+* Dynamic memory allocation means the memory is allocated while your program is **running**.
+
+## Constructor
+* These are special type of functions used to define the variables at one place for any class.
+* It is used after the **new** keyword because we need to allocate it dynamically. 
+* It is used to **define** the variables which will be present inside a class. 
+* We dont need to repeat ourselves with **variableName.instanceVariable** .
+* **variableName** means the **reference variable** means the one through which we call an object . Objects are not called directly, they are stored in heap . We assign a variable to an object and access everything from that object.
+* **instance variable** is the one which we create inside object.
+
+## This keyword
+* We use **this** keyword which shows that which *referenceVar* to point.
+* Otherwise we had to manually add all variables fir different referenceVariables.
+* Constructor is defined inside the class itself.
+
+## Object memory location
+* Object's ref variable point to same object in the stack just like strings. If u change one ref variable then all will change.
