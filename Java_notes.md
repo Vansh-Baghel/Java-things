@@ -363,3 +363,16 @@
 
 ## Object memory location
 * Object's ref variable point to same object in the stack just like strings. If u change one ref variable then all will change.
+
+## Default instance variable value
+* Whenever we call any instance variable using dot operator , and if the instance variable is not initialized with any value then the value will be by default the value of that datatype .
+* String will print **null** , int and float will give **0 and 0.0**. 
+
+## Pass by value 
+* Java doesn't have pass by reference thing.
+* Everything which is passed is pass by value . For eg:- You cannot swap 2 variables a,b by calling a function swap which is made. They will pass the values of the variable and not the variable . So the values will be changed in the swap function but the original a, b variables will remain the same. 
+
+## Pass by reference 
+* Whenever we pass an object , it is pass by reference.
+
+## Wrapper classes
