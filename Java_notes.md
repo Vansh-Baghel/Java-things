@@ -376,3 +376,14 @@
 * Whenever we pass an object , it is pass by reference.
 
 ## Wrapper classes
+* **Integer** , **String** are some predefined wrapper classes which we can use as a datatype and can access to different pre defined properties of it.
+
+## final keyword 
+* Once we use final keyword then we cannot change the value of the reference variable .
+* This rule is only applicable for primitive datatypes.
+
+## final keyword for objects
+* Here we can change the instance variable but we cannot change the object ka reference variable.
+
+## finalize method
+* It is called when java is doing garbage collection.
