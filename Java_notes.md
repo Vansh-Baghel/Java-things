@@ -384,6 +384,10 @@
 
 ## final keyword for objects
 * Here we can change the instance variable but we cannot change the object ka reference variable.
+* We can change the variable but we cannot **reassign** the object.
 
 ## finalize method
 * It is called when java is doing garbage collection.
+* It helps us to say that what must be done when the objects are destroyed. We cannot destroy the objects manually but can say what is to be done when its destroyed.
+* We use this inside the class, and whenever the class is destroyed from the memory then this finalize method will be called.
+* It is ran automatically , we cannot ask it to run.
