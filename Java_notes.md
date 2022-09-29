@@ -391,3 +391,14 @@
 * It helps us to say that what must be done when the objects are destroyed. We cannot destroy the objects manually but can say what is to be done when its destroyed.
 * We use this inside the class, and whenever the class is destroyed from the memory then this finalize method will be called.
 * It is ran automatically , we cannot ask it to run.
+
+## Packages 
+* These are basically the folders itself. If there is one folder inside a folder then the outer folder name will be **combined** with the inner folder name using dot. Like outerName.innerName . And if there are more than one folders inside a folder then the names will remain as it is. There will be no combination.
+* We cannot create same name file inside a folder . This is where packages comes in and we can create same named file in **different folders** .
+* We can use any function in different files by importing that function . The function must have **public static dataType funcName** to be used by other function.
+* We can use class in other files and we dont even need to import the file if both are in same package ie different files in same folder. 
+
+## Static keyword
+* Whenever for any class there is a common variable for all the objects , we define it using static keyword.
+* That variable wont change for any object . It will be common for all . 
+* We have to declare it by using **class name** instead of **this** keyword. It'll work for both , but will throw alert msg to fix it while using **this**.
