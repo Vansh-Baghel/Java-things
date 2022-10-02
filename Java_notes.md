@@ -400,5 +400,109 @@
 
 ## Static keyword
 * Whenever for any class there is a common variable for all the objects , we define it using static keyword.
-* That variable wont change for any object . It will be common for all . 
-* We have to declare it by using **class name** instead of **this** keyword. It'll work for both , but will throw alert msg to fix it while using **this**.
+* Anything defined by static keyword will be **independent** of the objects . It will work even if class doesn't have any instances ie objects .
+* Static returns 1 value for all objects , so if the objects are like changing for that static variable then the bottommost object ka value for that static variable will be printed for all objects.
+* When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object. You can declare both methods and variables to be static.
+* The most common example of a static member is main( ).
+* **main( )** is declared as static because it must be called before any objects exist as the file starts running from main so main cannot be dependent method.
+* Static method in Java is a method which belongs to the class and not to the object.
+
+## Static VS Non-Static methods
+* A static method can call only other static methods and cannot call a non-static method from it.
+* A static method can be accessed directly by the class name and doesn’t need any object
+* A static method cannot refer to **this** keyword.
+* Static methods are class level methods, so it is always resolved during compile time.
+* We cannot declare the topmost class as static because it is the only class on which rest of the code is dependent so atleast that class must be independent.
+* A static method can access only static data. It cannot access non-static data (instance variables)
+* A non-static member belongs to an instance. It's meaningless without somehow resolving which instance of a class you are talking about. In a static context, you don't have an instance, that's why you can't access a non-static member without explicitly mentioning an object reference.
+* In fact, you can access a non-static member in a static context by specifying the object reference explicitly :
+
+```java
+  public class Human {
+
+  String message = "Hello World";
+
+  public static void display(Human human){
+  System.out.println(human.message);
+  }
+
+  public static void main(String[] args) {
+  Human kunal = new Human();
+  kunal.message = "Kunal's message";
+  Human.display(kunal);
+  }
+  }
+```
+> Only nested classes can be static.
+> Static inner classes can have static variables
+
+## static block
+* If you need to do computation in order to initialize your static variables, you can declare a **static block** that gets executed exactly once, when the class is first loaded.
+
+```java
+// Demonstrate static variables, methods, and blocks.
+class UseStatic {
+static int a = 3;
+static int b;
+static void meth(int x) {
+System.out.println("x = " + x);
+System.out.println("a = " + a);
+System.out.println("b = " + b);
+}
+static {
+System.out.println("Static block initialized.");
+b = a * 4;
+}
+public static void main(String args[]) {
+meth(42);
+}
+}
+```
+ 
+## Singleton Class
+* When we want a particular class to have only one object in it , then we use something called as Singleton Class.
+* Logically if we don't allow the user to create a constructor class , then that class will for sure have only **one object** and also only one **instance var**.
+* Use **private** keyword on both constructor and instance variable which means that we can only use them inside that file and not in other files.
+* If more than one ref variable is pointing to that same class , then just return the constructor which was first created.
+* Both object and instance must be **static** because it cannot be dependent on the object as we are not creating any object in other files . We are creating one object inside that file but we cannot create any object in any other files .
+* We must put a base condition that if there are no objects , then create one because if any other file creates a ref variable pointing to that object then the object must exist.
+
+## Inheritance 
+* We can make many classes from a single class which is called inheritance.
+* The parent classes cannot use instances of child classes but child classes can use instances of parents classes.
+  1. Multiple inheritance
+  * There is no multiple inheritance in java ie we cannot create child of child.
+  2. Hierarchial Inheritance
+  * We can create multiple class from the initial class. There is only one parent class and rest of them are sibling classes.
+  3. Hybrid Inheritance
+  * Not in java .
+  * Means it will have more than one classes inherited from parent class which is linked to another class .
+  
+## Extends
+* Extends keyword is used in classes. 
+* If we extend one class with another , then the extended class can use everything of the other class and in addition we can add more instances to it.
+
+## super keyword
+* Use **super** keyword for accessing the variables of the parent class. 
+* We can even access them using this keyword but the problem is that the compiler will check the object first and then the class . So if the object has a variable of that same name , then it'll just return that . Also thats not a good practice.
+
+## Method Overloading 
+* When we create methods with same name but different return type , arguments , types and order of the argument.
+
+## Method overridding
+* Means both parent and child has same method in both . 
+* Here child class will be prioritized the parent class ka method.
+* We use **@override** which is an annotation which will check if the method is overriding or not.
+* This happens when the ref var is of super class datatype (ie parent class) and which method will be called will depend on the child . This is known as **Upcasting**.
+* What reference variable will be able to access depends on the **datatype** of ref var and which one its able to run will depend on its datatype object.
+
+## Polymorphism 
+* Poly means many and morphism means ways to represent.
+* We can create methods with same method name in different files and can call that method in many ways like by specifying the class of those files. 
+* Types of Polymorphism: - 
+1. Compile Time / Static Polymorphism
+* Achieved via Method overloading
+2. Runtime / Dynamic Polymorphism
+* Achieved via Overriding
+* **Dynamic Method Dispatch** is a mechanism in which overridden method is resolved during run time rather than compile time . This is how we do runtime polymorphism. 
+* Through this mechanism , java determines that we have to run method of object (child object) and not method of super class (parent class) as both have same methods which is why they are overridden.

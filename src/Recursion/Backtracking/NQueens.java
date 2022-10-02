@@ -34,7 +34,6 @@ public class NQueens {
                 return false;
         }
 
-            if ()
         }
 
         // diagonal left
