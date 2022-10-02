@@ -481,6 +481,7 @@ meth(42);
 ## Extends
 * Extends keyword is used in classes. 
 * If we extend one class with another , then the extended class can use everything of the other class and in addition we can add more instances to it.
+* Every class by default extends the **Object** class inbuilt by Java developers.
 
 ## super keyword
 * Use **super** keyword for accessing the variables of the parent class. 
@@ -495,6 +496,8 @@ meth(42);
 * We use **@override** which is an annotation which will check if the method is overriding or not.
 * This happens when the ref var is of super class datatype (ie parent class) and which method will be called will depend on the child . This is known as **Upcasting**.
 * What reference variable will be able to access depends on the **datatype** of ref var and which one its able to run will depend on its datatype object.
+* We cannot override static methods because we know that static methods are not dependent on any objects . However you call it , it'll be used via parent class only. 
+* Overriding depends on objects and static methods doesn't depend on objects , hence static methods cannot be overridden.
 
 ## Polymorphism 
 * Poly means many and morphism means ways to represent.
@@ -506,3 +509,17 @@ meth(42);
 * Achieved via Overriding
 * **Dynamic Method Dispatch** is a mechanism in which overridden method is resolved during run time rather than compile time . This is how we do runtime polymorphism. 
 * Through this mechanism , java determines that we have to run method of object (child object) and not method of super class (parent class) as both have same methods which is why they are overridden.
+
+## Encapsulation
+* Wrapping up the implementation of the data members and methods in a class . It protects the code between it from outside code.
+* It is the implementation part of a particular code , like we store the data in some file to make some things work.
+* It hides a single entity and protects it from outside world.
+* It works on the internal stuffs like its codes and logics.
+* It is a process of containing the information.
+
+## Abstraction
+* Hiding unnecessary details and showing valuable information only . 
+* Some codes are important but not necessary to show. For eg: - Inbuilt methods and classes like ArrayList.
+* It is the designing part . Like it will show only necessary files and hide all the logic and files through which that necessary file is working.
+* It works on the external stuffs like the things to be displayed.
+* It is a process of gaining the information .
