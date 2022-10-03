@@ -357,7 +357,7 @@
 * We use **this** keyword to point the ref var of the class and the RHS value is the assigned value which we mention in the paranthesis while making the constructor or the object. 
 * Constructor can follow **Polymorphism** to avoid errors which different number of arguments.
 * We can use **nested constructor** too.
-
+* Whenever we use any item of class with any object, then all the items of that class will poin5 to that object.
 
 
 ## This keyword
