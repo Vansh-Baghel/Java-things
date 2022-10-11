@@ -16,6 +16,8 @@ public class MergeSort {
 
         int mid = arr.length / 2;
 
+//        This left and right will follow the recursion tree and will sort 2 numbers in the start . Then in this way it will sort all the left and right numbers like here [4,5] and [1,2,3] will be the last left and right values which will be merged .
+
         int[] left = mergeSort(Arrays.copyOfRange(arr, 0, mid));
         int[] right = mergeSort(Arrays.copyOfRange(arr, mid, arr.length));
 

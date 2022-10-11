@@ -20,6 +20,8 @@ public class Permutations_PermCounts {
 
         ArrayList<String> list = new ArrayList<>();
 
+        //    https://www.youtube.com/watch?v=gDGw0cvFXPQ&t=1s  ==> 8.05
+
         for (int i = 0; i <= p.length() ; i++) {
             String f = p.substring(0 , i);
             String s = p.substring(i , p.length());
