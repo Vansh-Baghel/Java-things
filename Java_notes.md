@@ -354,7 +354,11 @@
 * It is used to **define** the variables which will be present inside a class. 
 * We dont need to repeat ourselves with **variableName.instanceVariable** .
 * **variableName** means the **reference variable** means the one through which we call an object . Objects are not called directly, they are stored in heap . We assign a variable to an object and access everything from that object.
-* **instance variable** is the one which we create inside object.
+* We use **this** keyword to point the ref var of the class and the RHS value is the assigned value which we mention in the paranthesis while making the constructor or the object. 
+* Constructor can follow **Polymorphism** to avoid errors which different number of arguments.
+* We can use **nested constructor** too.
+* Whenever we use any item of class with any object, then all the items of that class will poin5 to that object.
+
 
 ## This keyword
 * We use **this** keyword which shows that which *referenceVar* to point.
