@@ -1,4 +1,4 @@
-## How Java executes
+____## How Java executes
 
 
 ## Interpreter and compiler 
@@ -313,6 +313,22 @@
 * Pivot is basically a random numbers which must have all the lower numbers on the left hand side and all the larger numbers on the right hand side . It is put into correct position when the while loop breaks and then the task of sorting takes place again .
 * Here after the while loop breaks , ie when end < start , then we sort the low and end & start and high . By this , we sort both the sides of pivot.
 
+# Quick Sort VS Merge Sort
+## Contiguous and Non-Contiguous Memory allocation
+[Memory_Allocation](Resources/Memory_Allocation.png)
+
+* In contiguous memory allocation all the elements are kept adding one by one in sequence .
+* In non contiguous memory allocation , elements are scattered in random locations .
+* We can do random access in contiguous memory allocation means any element could be reached and uska data can be extracted directly . On the other hand , in non contiguous we have to get all the previous datas to get the data we need in the memory.
+
+## Quick over merge for Arrays
+* QuickSort requires alot of random access , therefore as Arrays have contiguous memory allocation , it is possible.
+* Quick Sort requires alot of random access of elements therefore arrays being contiguous is advantaguous in finding the elements .
+* Quick Sort is **In-place** sorting therefore it doesn't require any extra space for storing a sorted array while merge sort does. **Space complexity** is O(N) for merge sort and O(1) for quickSort.
+
+## Merge over Quick Sort for Linked List
+* We
+
 # Recursive Strings
 ## Skip Char and Strings 
 * **substring** method creates a new array from the original array without changing it , also we know that strings are **immutable**. The part we want in new array could be described using the index numbers . If only 1 index is mentioned then it means that all the char after it will be the new array.
@@ -527,3 +543,4 @@ meth(42);
 * It is the designing part . Like it will show only necessary files and hide all the logic and files through which that necessary file is working.
 * It works on the external stuffs like the things to be displayed.
 * It is a process of gaining the information .
+
