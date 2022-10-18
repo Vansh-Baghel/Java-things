@@ -327,7 +327,8 @@ ____## How Java executes
 * Quick Sort is **In-place** sorting therefore it doesn't require any extra space for storing a sorted array while merge sort does. **Space complexity** is O(N) for merge sort and O(1) for quickSort.
 
 ## Merge over Quick Sort for Linked List
-* We
+* We can use mergeSort over quickSort for linked list because we can insert item in the middle in O(1) extra space and time therefore no extra space is required even by mergeSort.
+* Here we cannot do random access , because it is non-contiguous , so we have to traverse through each element ie sequentially to find a particular element.
 
 # Recursive Strings
 ## Skip Char and Strings 
@@ -419,13 +420,14 @@ ____## How Java executes
 * We can use class in other files and we dont even need to import the file if both are in same package ie different files in same folder. 
 
 ## Static keyword
-* Whenever for any class there is a common variable for all the objects , we define it using static keyword.
-* Anything defined by static keyword will be **independent** of the objects . It will work even if class doesn't have any instances ie objects .
-* Static returns 1 value for all objects , so if the objects are like changing for that static variable then the bottommost object ka value for that static variable will be printed for all objects.
+* Static methods cannot be **overridden**.
+* Whenever for any class there is a **common variable** for all the objects , we define it using static keyword.
+* Anything defined by static keyword will be **independent** of the objects . It will work even if class **doesn't have any instances** ie objects .
+* Static returns **one same value** for all objects , so if the objects are like changing for that static variable then the bottommost object ka value for that static variable will be printed for all objects.
 * When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object. You can declare both methods and variables to be static.
-* The most common example of a static member is main( ).
+* The most common example of a static member is **main( )**.
 * **main( )** is declared as static because it must be called before any objects exist as the file starts running from main so main cannot be dependent method.
-* Static method in Java is a method which belongs to the class and not to the object.
+* Static method in Java is a method which **belongs to the class** and not to the object.
 
 ## Static VS Non-Static methods
 * A static method can call only other static methods and cannot call a non-static method from it.
@@ -491,7 +493,7 @@ meth(42);
 * We can make many classes from a single class which is called inheritance.
 * The parent classes cannot use instances of child classes but child classes can use instances of parents classes.
   1. Multiple inheritance
-  * There is no multiple inheritance in java ie we cannot create child of child.
+  * There is no multiple inheritance in java ie we cannot create child of child because if there exist a variable or method with same name then Java gets confused that whcih one to exist. 
   2. Hierarchial Inheritance
   * We can create multiple class from the initial class. There is only one parent class and rest of them are sibling classes.
   3. Hybrid Inheritance
@@ -505,14 +507,17 @@ meth(42);
 
 ## super keyword
 * Use **super** keyword for accessing the variables of the parent class. 
+* It must be used on the very first line whereever used because its a rule to use parent class content before child class.
 * We can even access them using this keyword but the problem is that the compiler will check the object first and then the class . So if the object has a variable of that same name , then it'll just return that . Also thats not a good practice.
 
 ## Method Overloading 
 * When we create methods with same name but different return type , arguments , types and order of the argument.
 
 ## Method overridding
-* Means both parent and child has same method in both . 
+* Means both parent and child has same method in both .
+* The memory gets saved as it will only create one method for all contents.
 * Here child class will be prioritized the parent class ka method.
+* Whenever a child class **overrides a method** of parent class, then if we call that method (override means both will have same name) then it will point to the **method of child** class and to **point the same method of parent class** , we use **super keyword**. 
 * We use **@override** which is an annotation which will check if the method is overriding or not.
 * This happens when the ref var is of super class datatype (ie parent class) and which method will be called will depend on the child . This is known as **Upcasting**.
 * What reference variable will be able to access depends on the **datatype** of ref var and which one its able to run will depend on its datatype object.
@@ -545,6 +550,7 @@ meth(42);
 * It is a process of gaining the information .
 
 ## Access modifiers
+![Access Modifiers](./Resources/Access%20modifiers.jpeg)
 * **Protected** can be used in another package **only by subclass** ie by the file which extends the file in which protected is present. Even parent cant use protected in another package , only subclass can.
 
 ## hashCode
@@ -557,4 +563,43 @@ meth(42);
 * .equals() check address of any datatype and return a boolean value.
 
 ## Find data of objects
-* There are many inbuilt methods to get the data of the objrct like its name, locstion , etc etc.
+* There are many inbuilt methods to get the data of the object like its name, locstion , etc etc.
+
+## Abstract
+* Abstract methods **doesn't have body** , it is only **declared in parent class** and is **defined in child class**.
+* We have to define the body of abstract method present in parent class inside the child class. We have to use **overriding** because we know whenever we want to **define anything in parent class from child class** , we can use overriding.
+* We use abstract when we know that a particular method of parent class must have **unique content for different objects** , so to keep the code clean , we use abstract methods .
+
+## Rules of abstract methods 
+* If a class contains abstract methods , then the parent class must also be declared abstract.
+* We cannot define the abstract methods in parent class.
+* We cannot create objects of abstract class ie parent class containing abstract method, because as we cannot use abstract method pointing to parent class as it doesn't have body . Its body is defined by child classes . So to keep this rule , we cannot create objects of it.
+* We cannot create abstract constructors of because it doesn't anything made through abstract doesn't have body.
+* We cannot create abstract static methods because static methods doesn't get overridden. We can create static methods in abstract class and like other static methods , we can also use this static method in the child classes of the parent class.
+
+## Interfaces
+* We have java interfaces, they have abstract functions (no body of functions).
+* Interface is like class but not completely. it is like an abstract class.
+* By default functions are **public and abstract** in interface, variables are **final and static** by default in interface.
+* Although they are similar to abstract classes, interfaces have an additional capability that it can implement(inherit) more than one interface class.
+* Also , it can use methods of **sibling interfaces** . In classes , subclass could only access methods of parent class but in interfaces , subclasses can also have access to each other.
+* Interfaces are syntactically similar to classes, but they lack instance variables, and, as a general rule,
+  their methods are declared without anybody.
+* We can assign datatype of variable as interface className and let the object be different. So here , we can access content of interface class and version of it will be of object class . 
+```JS
+Engine car1 = new Car();       // Here Engine is an interface class and Car is a class which implements (inherits) Engine.
+// car1 will be able to access all content of Engine class and those methods are overriden in Car object as its implementing it so the content/version of Engine's method will point to Car . If there exist variable a = 10 in Car , then car1 cannot access a because only datatype of car1 can decide which what all can it use.
+```
+* We can write content of a method in interface by using **default keyword**. No 2 interfaces can have default applied to same method if one extends another otherwise it will be the same problem like multiple inheritance.
+* The purpose of default was to store a method which is common to all subclasses.
+* We can use static method in interface classes , just the rule is that the method must be defined in the interface class itself.
+
+## Access Modifier in Interface
+* We can also change the Access Modifier of the methods of interface classes .
+* The change must only be higher . We can change private to public while using , but cannot change public to private because public is most supreme.
+
+## Implementation in Interface
+* Implementation here means to inherit the interface class . 
+* A class can implement more than one interface , just like multiple inheritance. By contrast, a class can only inherit a **single superclass** .  
+* We only use implement keyword in class when we are defining those interface classes in any other class, else we use extends when we want the content of any class . 
+* When we are implementing more than one classes , then we must define the content of all the classes we are implementing . Also , if B extends A and if we implement B , then we have to define the methods of A too.
