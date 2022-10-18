@@ -551,3 +551,7 @@ meth(42);
 * It is a random number aesigned to **object**.
 * Each object has different hashCode. 
 * hashCodes are **not object id**.
+
+## .equals VS '=='
+* '==' checks the value of any datatype and return a boolean value.
+* .equals() check address of any datatype and return a boolean value.
