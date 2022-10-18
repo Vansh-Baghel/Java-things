@@ -555,3 +555,6 @@ meth(42);
 ## .equals VS '=='
 * '==' checks the value of any datatype and return a boolean value.
 * .equals() check address of any datatype and return a boolean value.
+
+## Find data of objects
+* There are many inbuilt methods to get the data of the objrct like its name, locstion , etc etc.
