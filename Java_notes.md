@@ -544,3 +544,5 @@ meth(42);
 * It works on the external stuffs like the things to be displayed.
 * It is a process of gaining the information .
 
+## Access modifiers
+* **Protected** can be used in another package **only by subclass** ie by the file which extends the file in which protected is present. Even parent cant use protected in another package , only subclass can.
