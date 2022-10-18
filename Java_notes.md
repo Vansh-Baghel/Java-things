@@ -546,3 +546,8 @@ meth(42);
 
 ## Access modifiers
 * **Protected** can be used in another package **only by subclass** ie by the file which extends the file in which protected is present. Even parent cant use protected in another package , only subclass can.
+
+## hashCode
+* It is a random number aesigned to **object**.
+* Each object has different hashCode. 
+* hashCodes are **not object id**.
