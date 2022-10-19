@@ -565,22 +565,33 @@ meth(42);
 ## Find data of objects
 * There are many inbuilt methods to get the data of the object like its name, locstion , etc etc.
 
-## Abstract
+## Abstract methods 
+* Abstract class can contain both **abstract and non-abstract** content in it.
 * Abstract methods **doesn't have body** , it is only **declared in parent class** and is **defined in child class**.
 * We have to define the body of abstract method present in parent class inside the child class. We have to use **overriding** because we know whenever we want to **define anything in parent class from child class** , we can use overriding.
 * We use abstract when we know that a particular method of parent class must have **unique content for different objects** , so to keep the code clean , we use abstract methods .
 
+## Variable in Abstract 
+* There are no abstract variables , only methods and classes.
+* If you create variable in abstract class and try to create another variable of same name in its subClass , even then both will be treated as different variables.
+* We can access variable of abstract class but cannot modify it.
+
+## Constructor of Abstract class
+* We can use constructor of abstract class. 
+* We can define and use the value of it in subClass .
+[Example and explanation](https://www.geeksforgeeks.org/constructor-in-java-abstract-class/)
+
 ## Rules of abstract methods 
 * If a class contains abstract methods , then the parent class must also be declared abstract.
 * We cannot define the abstract methods in parent class.
-* We cannot create objects of abstract class ie parent class containing abstract method, because as we cannot use abstract method pointing to parent class as it doesn't have body . Its body is defined by child classes . So to keep this rule , we cannot create objects of it.
+* We **cannot create objects** of abstract class but we can assign the **datatype of variable** as abstract class . Datatype (LHS wala) says **what is to be used** and the object says (RHS wala) **which version is to be used** . Its body is defined by child classes . 
 * We cannot create abstract constructors of because it doesn't anything made through abstract doesn't have body.
 * We cannot create abstract static methods because static methods doesn't get overridden. We can create static methods in abstract class and like other static methods , we can also use this static method in the child classes of the parent class.
 
 ## Interfaces
 * We have java interfaces, they have abstract functions (no body of functions).
 * Interface is like class but not completely. it is like an abstract class.
-* By default functions are **public and abstract** in interface, variables are **final and static** by default in interface.
+* By default functions are **public and abstract** in interface, variables are **final and static** (final means it cannot be inherited or overridden) by default in interface.
 * Although they are similar to abstract classes, interfaces have an additional capability that it can implement(inherit) more than one interface class.
 * Also , it can use methods of **sibling interfaces** . In classes , subclass could only access methods of parent class but in interfaces , subclasses can also have access to each other.
 * Interfaces are syntactically similar to classes, but they lack instance variables, and, as a general rule,
@@ -593,6 +604,9 @@ Engine car1 = new Car();       // Here Engine is an interface class and Car is a
 * We can write content of a method in interface by using **default keyword**. No 2 interfaces can have default applied to same method if one extends another otherwise it will be the same problem like multiple inheritance.
 * The purpose of default was to store a method which is common to all subclasses.
 * We can use static method in interface classes , just the rule is that the method must be defined in the interface class itself.
+
+## Constructor in Interface
+* We cannot have constructors in Interface as variables are static so they doessn't depend on parent class .
 
 ## Access Modifier in Interface
 * We can also change the Access Modifier of the methods of interface classes .
