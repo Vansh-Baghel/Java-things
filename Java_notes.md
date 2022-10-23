@@ -617,3 +617,61 @@ Engine car1 = new Car();       // Here Engine is an interface class and Car is a
 * A class can implement more than one interface , just like multiple inheritance. By contrast, a class can only inherit a **single superclass** .  
 * We only use implement keyword in class when we are defining those interface classes in any other class, else we use extends when we want the content of any class . 
 * When we are implementing more than one classes , then we must define the content of all the classes we are implementing . Also , if B extends A and if we implement B , then we have to define the methods of A too.
+
+## Generics 
+* Whenever we create our custom ArrayList then we cannot provide the different datatypes which pre define ArrrayList already have. 
+* So when we don't know the datatype like which will be used , then we can use generics to make sure that the datatype changes according to mentioned datatype . 
+* Its syntax :- <T>
+* **T** is denoted as generic and it can handle the datatype of the custom ArrayList.
+
+## Handling Exception
+* We can use **catch and try** in Java too . In catch parenthesis , we have to mention **Exception** which is an inbuilt class to handle exception and it contains various subClasses too which defines specific exception.
+* Another way is to use throw . Whenever we use throw then we have to wrap it with **throws exceptionName** . **throws** declare the exception and throw is throwing the exception.
+
+## Cloning Object
+* We have to **implement Cloneable** and create a new object clone which throws an exception and return the clone. 
+* Whenever we clone a certain object, the primitive datatype are newly created but non-primitive datatypes use the same object . So if we change a non-primitive datatype of cloned object, then it will also change the original object.
+* This is called **shallow cloning**. 
+* There's something called deep cloning which creates new object even for non-primitive datatype, but it's a lot of manual work.
+
+## Collection
+* It is the **Interface** which contains all the other inbuilt interfaces and classes like List , ArrayList , Leetcode.LinkedList , etc .
+* List is just parent of ArrayList .
+![Collection Framework](Resources/Collections-Framework.png)
+
+## Vector 
+* Vectors are same as ArrayList just the difference is that ArrayList handles multiple threads at the same time but vector uses one thread at a time and wait for rest .
+* So vector is kinda slow than ArrayList.
+
+## enums
+* It is group of variables.
+* Each of the enum properties in enum object is **public , static and final**.
+* **ordinal** is used to check the index of the enum declared. Similarly, there are various inbuilt methods available in enum.
+* Constructor in enum is only private and default because if it was public or protected then we don't want to create new objects , as the concept of enum says that it helps to print fixed number of objects. 
+* It can implement interfaces but cannot extend any class.
+* Abstract is not allowed in enum.
+
+# Linked List
+* It is a list which basically stores the **memory as boxes** in the heap.
+* Each box is of **type Node**.
+* There exists head and tail which are basically first and last node.
+* The next element after tail is null .
+
+## Adding elements in Linked List
+* We can add elements without traversing through each element if we assign tail variable because linked list are already not in continuous order so we can add any element in the end after tail directly .
+* We can also add elements from the start . But it will descend the order .
+* We can also add any element at the given index number.
+* If we dont assign tail , then we have to traverse from start and search for null to find the last element and add the new element there.
+
+## Sinlgy Linked List
+* It only cares about its value and the next element of node.
+* It doesn't care about it previous value.
+* The next element of tail is going to be null .
+
+## Doubly Linked List
+* It checks both the way , ie , previous and next value. 
+* The next element of tail and previous element of head is going to be null .
+
+## Circular Linked List
+* Here there is no null value. 
+* The next element of tail is joined with the head , its like circular closed loop of nodes.
