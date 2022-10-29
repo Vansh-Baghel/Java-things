@@ -675,3 +675,59 @@ Engine car1 = new Car();       // Here Engine is an interface class and Car is a
 ## Circular Linked List
 * Here there is no null value. 
 * The next element of tail is joined with the head , its like circular closed loop of nodes.
+
+# Stacks and Queues
+ 
+## Stacks
+* It is like adding items from the back and the one which comes the latest will be removed first.
+* In the memory , it gets stored like Arrays itself.
+* Also , it contains many inbuilt methods as well.
+* There's something called dynamic stack which will never get full . It will be twice the size of the elements which are already present in it.
+
+## Queues
+* These are inbuilt **interface** and we can add items from the end and it will remove the items from the start.
+* Like LinkedList where we have head and tail and when we remove any item , it will be removed from the head.
+* Also , it contains many inbuilt methods as well.
+* All the removed items are displayed in the output.
+* In queue, items are removed by shifting the elements from the queue.
+
+## Deque
+* In this , we can add or remove the items from the start as well as from the end.
+* Also , it contains many inbuilt methods as well.
+* Whenever we want to remove element from the deque , it was removes the first element . You cannot remove element from the middle. Basically internally it shifts to the left.
+
+## Circular queue
+* Here we use modulo of size for end and start. Because otherwise the array will go out of bound . 
+* So whenever we add an item in the circular queue , it shifts the end by one ie after adding internally end % length so that it shifts by one ahead and get back to start once the length is full.
+* We decrease the first by one whenever we remove so 1st element will only be removed and then first % length happens internally.
+
+# Hash technique 
+* It contains a table and all the elements are **inserted by their last number digit** . EG: - n = 21 then it will be stored at 21 % 10 = 1st index.
+* There are **techniques** to handle the **hash collisions** ie numbers with same remainder value.
+
+## Handling hash collision
+* These are the numbers with same remainder value.
+1. If there all other elements with the same index then it will **create a linked list** at that index so that searching the elements becomes easy. This technique is called **Chaining**.
+2. It will **store the value as the nearest place** of that remainder value . If the remainder is 1 and there's already a number existing at 1 then it will store the new value at 2 or 0 or any other vacant place. This technique is called **Open Addressing**,
+
+# Hash maps
+* Whenever we want to save value and key pairs, then we use hash maps.
+
+## put
+* We use **put** to insert the pairs. The output will be unordered ie it doesn't have a fixed order of outputting , its jumbled .
+* If the pair already exist then it will just update that pair . Like if the key is same and the value is different then it will update the existing key ka pair rather than adding new key with same name .
+
+## containsKey vs get
+* **get** will get us the value of that key , and if the key doesn't exist then will give null.
+* **containsKey** will return a boolean value.
+
+## map
+* Syntax is different but it just iterates through each **entry** (means key-value pair) of the data one by one.
+
+# Hash Sets
+* Every value in this set is **unique**.
+* It is known for its **time complexity** because to it takes constant time to add / remove or search any element in the set.
+
+## Iterator in hash 
+* It is a **datatype** as well as the **method** when we want to iterate through the set or map.
+* It contains **hasNext** and **next** methods . **next** will start from null and start **printing the next values** and **hasNext** will return a **boolean value** that does the element even exist.
