@@ -679,7 +679,7 @@ Engine car1 = new Car();       // Here Engine is an interface class and Car is a
 # Stacks and Queues
  
 ## Stacks
-* It is like adding items from the back and the one which comes the latest will be removed first.
+* It is like **adding items from the back** and the one which comes the **latest will be removed first**.
 * In the memory , it gets stored like Arrays itself.
 * Also , it contains many inbuilt methods as well.
 * There's something called dynamic stack which will never get full . It will be twice the size of the elements which are already present in it.
