@@ -42,5 +42,7 @@ public class BinarySearchSqrt {
 
         return root;
     }
+
+
 }
 

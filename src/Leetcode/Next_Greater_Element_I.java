@@ -35,4 +35,41 @@ public class Next_Greater_Element_I {
         }
         return nums1;
     }
+
+    public int[] nextGreaterElement1(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        int[] ans= new int[nums1.length];
+
+        int[] nums2_greaterArr = nextGreaterElementOf2Arr(nums2);
+
+        for (int i = 0; i < nums2_greaterArr.length; i++) {
+            hm.put(nums2[i] , nums2_greaterArr[i]);
+        }
+
+        for (int i = 0; i < nums1.length; i++) {
+            ans[i] = hm.get(nums1[i]);
+        }
+        return ans;
+    }
+
+    static int[] nextGreaterElementOf2Arr(int[] nums) {
+        Stack<Integer> st = new Stack<>();
+        int[] ans = new int[nums.length];
+        int n = nums.length;
+        ans[n -1] = -1;
+        st.add(nums[n-1]);
+
+        for (int i = n - 2; i >= 0; i--) {
+            ans[i] = -1;
+
+            while (!st.isEmpty() && st.peek() < nums[i]){
+                st.pop();
+            }
+            if(!st.isEmpty() && st.peek() > nums[i]){
+                ans[i] = st.peek();
+            }
+            st.push(nums[i]);
+        }
+        return ans;
+    }
 }

@@ -9,32 +9,32 @@ public class Merge_Two_SortedLists {
      ListNode(int val) { this.val = val; }
      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  }
+
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode temp = new ListNode();
-        ListNode head = temp;
+        ListNode ans = new ListNode(0);
+        ListNode temp = ans;
 
         while (list1 != null && list2 != null){
-            if (list1.val > list2.val){
-                temp.next = list2;
-                list2 = list2.next;
-                temp = temp.next;
+            if(list1.val > list2.val){
+                ans.next = list2;
+                ans = ans.next;
+                list2=list2.next;
+            } else {
+                ans.next = list1;
+                ans = ans.next;
+                list1=list1.next;
             }
-            else{
-                temp.next = list1;
-                list1 = list1.next;
-                temp = temp.next;
-            }
         }
-        while (list1 != null) {
-            temp.next = list1;
-            list1 = list1.next;
-            temp = temp.next;
+        while (list1 != null){
+            ans.next = list1;
+            ans = ans.next;
+            list1=list1.next;
         }
-        while (list2 != null) {
-            temp.next = list2;
-            list2 = list2.next;
-            temp = temp.next;
+        while (list2 != null){
+            ans.next = list2;
+            ans = ans.next;
+            list2=list2.next;
         }
-        return head.next;
+        return temp.next;
     }
-    }
+}

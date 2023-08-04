@@ -18,4 +18,31 @@ public class Valid_Paranthesis {
             }
             return stack.isEmpty();
     }
+
+    public boolean isValid2(String s) {
+        Stack<Character> st = new Stack<Character>();
+
+            for (char ch: s.toCharArray()){
+        if (ch == '('){
+            st.push(ch);
+        } else if (ch == ')'){
+            if (!st.isEmpty() && st.peek() == '(') st.pop();
+            else return false;
+        }
+        if (ch == '['){
+            st.push(ch);
+        } else if (ch == ']'){
+            if (!st.isEmpty() && st.peek() == '[') st.pop();
+            else return false;
+        }
+        if (ch == '{'){
+            st.push(ch);
+        } else if (ch == '}'){
+            if (!st.isEmpty() && st.peek() == '{') st.pop();
+            else return false;
+        }
+    }
+            return st.isEmpty();
+
+    }
 }

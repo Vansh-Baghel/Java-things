@@ -1,75 +1,95 @@
+package Leetcode;
+
 import java.util.*;
 // Creating Queue
-class Pair {
-    int row;
-    int col;
-    int time;
-    Pair(int row, int col, int time) {
-        this.row = row;
-        this.col = col;
-        this.time = time;
+import java.util.*;
+class Rotten_Oranges {
+    public static void main(String[] args) {
+        int[][] grid =  {{0,1,2},{0,1,2},{2,1,1}};
+
+        Rotten_Oranges obj = new Rotten_Oranges();
+        int ans = obj.orangesRotting(grid);
+        System.out.println(ans);
     }
-}
 
-class Solution {
-    public int orangesRotting(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        Queue< Pair > q = new LinkedList < > ();
-        int countFresh = 0;
-        int[][] visited = new int[m][n];
+    //Function to find minimum time required to rot all oranges.
+    static int orangesRotting(int[][] grid) {
 
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        // Code here
+        int n = grid.length;
+        int m = grid[0].length;
+
+        int[][] vis = new int[n][m];
+        int count = 0;
+
+        for (int i = 0 ; i < n ; i++){
+            for (int j = 0 ; j < m ; j++){
                 if (grid[i][j] == 2){
-//                    Adding in queue so that we can check the 4 directions for these indices only.
-                    q.add(new Pair(i,j,0));
-                    visited[i][j] = 2;
-                }
-                else {
-                    visited[i][j] = 0;
-                }
-
-                if (grid[m][n] == 1){
-//                    Keeping fresh counter because we need to count the time of all oranges which are rotten. Even if 1 count is less, then we have to return -1.
-                    countFresh++;
+                    rottenTheOranges(i , j, grid , count, vis);
                 }
             }
         }
-
-//        Now lets change the 4 directions of rotten oranges
-        int countRotten = 0;
-        int time = 0;
-
-//        up left down right order
-        int[] numbersToAddInRowToMove = {-1, 0, 1, 0};
-        int[] numbersToAddInColToMove = {0, 1, 0 , -1};
-
-        while (!q.isEmpty()){
-//           Starting with the topmost Pair from the queue.
-            int r = q.peek().row;
-            int c = q.peek().col;
-            int t = q.peek().time;
-            time = Math.max(time, t);
-            q.remove();
-//            Looping in 4 directions only around indices which contains number 2 ie rotten.
-            for (int i = 0; i < 4; i++) {
-                int moveRow = r + numbersToAddInRowToMove[i];
-                int moveCol = c + numbersToAddInColToMove[i];
-//                the movedRow and movedCol must be smaller than m and n because those are the lengths which usually are 1 more ie if mat is 3*3 then length is 4 for row and col each
-//                Checking the position out of bound case and changing only if element is 1 as we dont need to rotten empty block and checking if its visited or not, if its visited already, then dont need to repeat the rottening of orange.
-                if (moveRow >= 0 && moveCol >= 0 && moveRow < m && moveCol < n && visited[moveRow][moveCol] == 0 && grid[moveRow][moveCol] == 1){
-//                    Whenever we turn a fresh orange into rotten one, we need to add that block in queue to check its 4 directions and add 2 in the visited matrix so that further checkings could be done.
-                    q.add(new Pair(moveRow , moveCol , t + 1));
-                    visited[moveRow][moveCol] = 2;
-                    countRotten++;
-                };
-            }
-        }
-        if (countFresh == countRotten) {
-            return time;
-        };
-        return -1;
+        return count;
     }
-}
 
+    static void rottenTheOranges(int row, int col, int[][] grid, int count, int[][] vis){
+        if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length) return;
+
+        // In case there is no fresh orange available.
+        if (grid[row][col] == 1) {
+            vis[row][col] = 1;
+            grid[row][col] = 2;
+            count++;
+        }
+
+        rottenTheOranges(row + 1, col, grid , count , vis);
+        rottenTheOranges(row, col + 1, grid , count , vis);
+        rottenTheOranges(row - 1, col, grid , count , vis);
+        rottenTheOranges(row + 1, col - 1, grid , count , vis);
+        return;
+    }
+
+//    Other Method
+//int n = grid.length;
+//    int m = grid[0].length;
+//    Queue<Pair> q= new LinkedList<>();
+//    int cntFresh = 0;
+//    int cntFreshConvertedtoRotten = 0;
+//    int tm = 0;
+//
+//    int[][] vis = new int[n][m];
+//
+//        for (int i = 0 ; i < n ; i++){
+//        for (int j = 0 ; j < m ; j++){
+//            if (grid[i][j] == 2){
+//                q.add(new Pair(i, j, 0));
+//                vis[i][j] = 2;
+//            }
+//            if (grid[i][j] == 1) cntFresh++;
+//        }
+//    }
+//
+//    int[] drow = {-1, 0 , 1, 0};
+//    int[] dcol = {0 , -1 , 0, 1};
+//
+//        while (!q.isEmpty()){
+//        int nrow = q.peek().row;
+//        int ncol = q.peek().col;
+//        int t = q.peek().tm;
+//        tm = Math.max(tm , t);
+//        q.remove();
+//
+//        for (int i = 0 ; i < 4 ; i++){
+//            int r = nrow + drow[i];
+//            int c = ncol + dcol[i];
+//
+//            if (r >= 0 && c >= 0 && r < n && c < m && vis[r][c] == 0 && grid[r][c] == 1){
+//                vis[r][c] = 2;
+//                q.add(new Pair(r, c, t + 1));
+//                cntFreshConvertedtoRotten++;
+//            }
+//        }
+//    }
+//        if (cntFresh != cntFreshConvertedtoRotten) return -1;
+//        else return tm;
+}
