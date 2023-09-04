@@ -37,9 +37,9 @@ public class Swap_Nodes_in_Pairs {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4,5,6};
+        int[] arr = {1,2,3,4};
         ListNode head = createLinkedList(arr);
-        ListNode ans = swapPairs(head);
+        ListNode ans = swapPairs2(head);
         display(ans);
     }
 
@@ -64,6 +64,24 @@ public class Swap_Nodes_in_Pairs {
                 }
             }
         }
+        return dummy.next;
+    }
+
+
+
+    static ListNode swapPairs2(ListNode head) {
+        ListNode dummy = new ListNode(-1), cur = head, prev = new ListNode(0), nxt=cur.next;
+        dummy.next=head.next;
+
+        while (cur!=null && nxt!=null){
+            cur.next = nxt.next;
+            nxt.next=cur;
+            prev.next=nxt;
+            prev=cur;
+            cur=cur.next;
+            if (cur != null) nxt=cur.next;
+        }
+
         return dummy.next;
     }
 }

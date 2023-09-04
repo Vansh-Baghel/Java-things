@@ -1,8 +1,10 @@
 //https://leetcode.com/problems/add-two-numbers/submissions/
 package Leetcode.LinkedList;
 
+import Leetcode_Manual_Input.LinkedList;
+
 public class Add_Two_Numbers {
-  public class ListNode {
+  static class ListNode {
       int val;
       ListNode next;
       ListNode() {}
@@ -10,7 +12,7 @@ public class Add_Two_Numbers {
      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
   }
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
       ListNode prev = new ListNode(0);
       ListNode head = prev;
       int carry = 0;
@@ -36,5 +38,85 @@ public class Add_Two_Numbers {
       }
 //      head was pointing to the new ListNode of 0 and from its next our List starts.
       return head.next;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static ListNode arrayToList(int[] arr) {
+            if (arr == null || arr.length == 0) {
+                return null;
+            }
+
+            ListNode head = new ListNode(arr[0]);
+            ListNode current = head;
+
+            for (int i = 1; i < arr.length; i++) {
+                current.next = new ListNode(arr[i]);
+                current = current.next;
+            }
+
+            return head;
+        }
+
+        public static void printList(ListNode head) {
+            ListNode current = head;
+            while (current != null) {
+                System.out.print(current.val + " ");
+                current = current.next;
+            }
+            System.out.println();
+        }
+
+        public static void main(String[] args) {
+            int[] arr = {9,9,9,9,9,9,9};
+            int[] arr1 = {9,9,9,9};
+            ListNode head1 = arrayToList(arr);
+            ListNode head2 = arrayToList(arr1);
+//            printList(head);
+            ListNode ans = addTwoNumbers2(head1, head2);
+            printList(ans);
+        }
+
+    static ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        ListNode temp = new ListNode(0);
+        ListNode head = temp;
+        int carry = 0;
+
+        while (l1!=null || l2 != null || carry != 0){
+            int sum = 0;
+            if (l1!=null && l2 != null) {
+                sum = l1.val + l2.val + carry;
+                l1=l1.next;
+                l2=l2.next;
+            }
+            else if (l1 != null) {
+                sum = l1.val + carry;
+                l1=l1.next;
+            }
+            else if (l2 != null) {
+                sum = l2.val + carry;
+                l2=l2.next;
+            } else sum = carry;
+            carry = sum / 10;
+            temp.next = new ListNode(sum % 10);
+            temp = temp.next;
+        }
+
+        return head.next;
     }
 }

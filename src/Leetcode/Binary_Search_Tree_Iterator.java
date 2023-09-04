@@ -1,8 +1,5 @@
 package Leetcode;
 
-import com.sun.source.tree.Tree;
-
-import javax.swing.*;
 import java.util.Stack;
 
 public class Binary_Search_Tree_Iterator{
@@ -19,34 +16,30 @@ public class Binary_Search_Tree_Iterator{
      }
  }
 
-// TreeNode type of stack
-    private Stack<TreeNode> stack = new Stack<>();
+    // TreeNode type of stack
+    static Stack<TreeNode> st = new Stack<>();
 
-    public void pushIntoStack(TreeNode root){
-        while (root != null){
-//            Pushing the root.
-            stack.push(root);
-//        Adding all the elements left to it.
-            root = root.left;
-        }
+    static void addAllLeft(TreeNode root, Stack<TreeNode> st){
+        while (root != null) {
+            st.add(root);
+            root=root.left;
+        };
     }
 
-    public Binary_Search_Tree_Iterator(TreeNode root) {
-//        This will go to that function which will add all the left nodes.
-        pushIntoStack(root);
+    public void BSTIterator(TreeNode root) {
+        // constructor
+        addAllLeft(root, st);
     }
 
     public int next() {
-//        Taking out the topmost node which was added. Storing top stack's node in tempNode so that it doesn't get mismatched with the newly added right nodes.
-        TreeNode tempNode = stack.pop();
-//        Pushing the right node if it exists and in that function, it will push all the left nodes which follows the inorder.
-        if (tempNode.right != null) pushIntoStack(tempNode.right);
-//        Returning the stored value.
-        return tempNode.val;
+        TreeNode top = st.pop();
+        if (top.right != null){
+            addAllLeft(top.right, st);
+        }
+        return top.val;
     }
 
     public boolean hasNext() {
-        // If stack is empty, then hasNext would be false.
-        return !stack.isEmpty();
+        return !st.isEmpty();
     }
 }

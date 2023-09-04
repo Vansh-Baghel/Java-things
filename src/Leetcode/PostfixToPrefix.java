@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class PostfixToPrefix {
     public static void main(String[] args) {
-        String str= "953+4*6/-"; 
+        String str= "953+4*6/-";
         String ans = preToPost(str);
 //        int ans = infix_method_for_brackets(str);
         System.out.println(ans);

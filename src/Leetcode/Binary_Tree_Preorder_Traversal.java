@@ -28,4 +28,30 @@ public class Binary_Tree_Preorder_Traversal {
         preOrderPrint(root.left, ans);
         preOrderPrint(root.right, ans);
     }
+
+    static List<Integer> morrisTraversal(Binary_Tree_Inorder_Traversal.TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        Binary_Tree_Inorder_Traversal.TreeNode cur = root;
+
+        while (cur!=null){
+            Binary_Tree_Inorder_Traversal.TreeNode prev = cur.left;
+            if(cur.left==null){
+                ans.add(cur.val);
+                cur=cur.right;
+            } else{
+                while (prev.right!=null && prev.right!=cur){
+                    prev=prev.right;
+                } if(prev.right==null){
+                    prev.right=cur;
+                    // adding cur while marking the right thread, therefore this will print root, left, right
+                    ans.add(cur.val);
+                    cur=cur.left;
+                } else{
+                    prev.right=null;
+                    cur=cur.right;
+                }
+            }
+        }
+        return ans;
+    }
 }

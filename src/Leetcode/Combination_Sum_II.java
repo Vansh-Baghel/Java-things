@@ -18,11 +18,11 @@ public class Combination_Sum_II {
 
     static void findingCombination2(int index, int[] arr, int target, List<Integer> list, List<List<Integer>> ans) {
 //        Base condition.
-        if (target == 0){
-            // Adding new list everytime so that many arrays start forming inside one array.
-            ans.add(new ArrayList<>(list));
-            return;
-        }
+            if (target == 0){
+                // Adding new list everytime so that many arrays start forming inside one array.
+                ans.add(new ArrayList<>(list));
+                return;
+            }
 
 //        We dont need previous numbers of the array therefore we are moving from index number of the current element to the last index .
         for (int i = index; i < arr.length; i++) {
@@ -37,6 +37,33 @@ public class Combination_Sum_II {
             list.add(arr[i]);
             findingCombination2(i + 1 , arr , target - arr[i] , list , ans);
 //            Removing latest numbers on backtrack.
+            list.remove(list.size() - 1);
+        }
+    }
+
+
+    public List<List<Integer>> combinationSum2_2(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        getAllCombinations(candidates, ans, list, target, 0);
+        return ans;
+    }
+
+    private void getAllCombinations(int[] candidates, List<List<Integer>> ans, List<Integer> list, int target, int index) {
+        for (int i = index; i < candidates.length; i++) {
+            if (candidates[i] == candidates[i + 1]) {
+                continue;
+            }
+
+            if (target == 0) {
+                ans.add(new ArrayList<>(list));
+                break;
+            }
+
+            if (target < 0) break;
+
+            list.add(candidates[i]);
+            getAllCombinations(candidates, ans, list, target - candidates[i], i+1);
             list.remove(list.size() - 1);
         }
     }
