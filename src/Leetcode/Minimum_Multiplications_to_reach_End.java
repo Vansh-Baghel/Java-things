@@ -9,20 +9,23 @@ public class Minimum_Multiplications_to_reach_End {
         int stepCount;
         int product;
 
-        Pair(int product, int stepCount){
+        Pair(int stepCount, int product){
             this.product=product;
             this.stepCount= stepCount;
         }
     }
 
     public static void main(String[] args) {
-        int[] arr = {2,5,7};
+        int[] arr = {3, 4, 65};
 
-        int ans = minimumMultiplications(arr, 3,30);
+        int ans = minimumMultiplications(arr, 7,66175);
         System.out.println(ans);
     }
 
     static int minimumMultiplications(int[] arr, int start, int end) {
+
+        if (start == end) return 0;
+
         Queue<Pair> q = new LinkedList<>();
         int mod = 100000;
         int[] steps = new int[mod]; // Assuming maximum product is 999999
@@ -30,7 +33,7 @@ public class Minimum_Multiplications_to_reach_End {
         Arrays.fill(steps, (int) 1e9);
         steps[start] = 0;
 
-        q.add(new Pair(start, 0));
+        q.add(new Pair(0, start));
 
         while (!q.isEmpty()){
             Pair top = q.poll();
@@ -38,7 +41,7 @@ public class Minimum_Multiplications_to_reach_End {
             int cnt = top.stepCount;
 
             for (int j : arr) {
-                int totalProduct = (j * prod) % 1000000;
+                int totalProduct = (j * prod) % mod;
 
                 if (totalProduct == end) {
                     return cnt + 1;
@@ -46,7 +49,7 @@ public class Minimum_Multiplications_to_reach_End {
 
                 if (steps[totalProduct] > cnt + 1) {
                     steps[totalProduct] = cnt + 1;
-                    q.add(new Pair(totalProduct, cnt + 1));
+                    q.add(new Pair(cnt + 1, totalProduct));
                 }
             }
         }

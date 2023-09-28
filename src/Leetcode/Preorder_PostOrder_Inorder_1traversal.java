@@ -72,7 +72,6 @@ public class Preorder_PostOrder_Inorder_1traversal {
             this.st = st;
             this.num=num;
         }
-
     }
 
     static void oneForAllTraversal(List<Integer> preorder, List<Integer> inorder, List<Integer> postorder, TreeNode root){

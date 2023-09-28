@@ -54,9 +54,9 @@ public class Kth_Largest_Element_in_a_BST {
     }
 
     public static void main(String[] args) {
-        Integer[] parentArray = {4, 2, 9};
+        Integer[] parentArray = {8,6,9,4,7,null,null,3};
         Node root = constructBinaryTree(parentArray);
-        int ans = kthLargest(root, 2);
+        int ans = kthLargest2(root, 5);
         System.out.println(ans);
     }
 
@@ -85,5 +85,33 @@ public class Kth_Largest_Element_in_a_BST {
             return root;
 
         return recursionInorder(root.right,k);
+    }
+
+    public static int kthLargest2(Node root, int K) {
+        int[] count = new int[1];
+        int[] ans = new int[1];
+        ans[0] = -1;
+        rightToLeft(root, K, count, ans);
+        return ans[0];
+    }
+
+    static void rightToLeft(Node root, int k, int[] count, int[] ans) {
+        if (root == null) return;
+
+        if (ans[0] == -1){
+
+            if (count[0] == k) {
+                ans[0] = root.data;
+            }
+
+            rightToLeft(root.right, k, count, ans);
+            count[0]++;
+
+            // Condition for the left side roots. If ye nhi dala toh left side mai jo counts increase hore toh that is not being checked.
+            if (count[0] == k) {
+                ans[0] = root.data;
+            }
+            rightToLeft(root.left, k, count, ans);
+        }
     }
 }

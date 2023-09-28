@@ -72,8 +72,68 @@ public class Number_of_Provinces {
             }
         }
     }
+    static List<Integer> parent = new ArrayList<>();
+    class DisjointSet {
+        static List<Integer> rank = new ArrayList<>();
 
-    // For without converting to list, directly from matrix, we need to use a vis with the length of matrix, and visit each of the vis node and adj node to check if its visited or not, this will cause more time and space since we will move through 2 matrices, and will also need a space of whole matrix.
+        public DisjointSet(int n) {
+            for (int i = 0; i <= n; i++) {
+                rank.add(0);
+                parent.add(i);
+            }
+        }
 
+        static int findUPar(int node){
+            if (node == parent.get(node)){
+                return node;
+            }
+
+            int ulp = findUPar(parent.get(node));
+            parent.set(node, ulp);
+            return parent.get(node);
+        }
+
+        private void unionByRank(int u, int v) {
+            int ultp_u = findUPar(u);
+            int ultp_v = findUPar(v);
+
+            System.out.println("ultp of " + u + ": " + ultp_u);
+            System.out.println("ultp of " + v + ": " + ultp_v);
+
+            if (ultp_u == ultp_v) return;
+            if (rank.get(ultp_u) < rank.get(ultp_v)) {
+                parent.set(ultp_u, ultp_v);
+            } else if (rank.get(ultp_u) > rank.get(ultp_v)) {
+                parent.set(ultp_v, ultp_u);
+            } else {
+                // If dono ka rank is same toh attach v to u.
+                parent.set(ultp_v, ultp_u);
+                int rankU = rank.get(ultp_u);
+                rank.set(ultp_u, rankU+1);
+            }
+        }
+    }
+    int numProvinces2(ArrayList<ArrayList<Integer>> adj, int V) {
+        DisjointSet ds = new DisjointSet(V);
+        int ans=0;
+
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                if (adj.get(i).get(j) == 1 && adj.get(j).get(i) == 1){
+                    ds.unionByRank(i, j);
+                }
+            }
+        }
+
+        for (int i = 0; i < V; i++) {
+            // Can also do this, or access the parent array.
+//            if (i == ds.findUPar(i)){
+//                ans++;
+//            }
+            if (i == parent.get(i)){
+                ans++;
+            }
+        }
+        return ans;
+    }
 }
-
