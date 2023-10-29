@@ -1,17 +1,17 @@
 package Leetcode;
 
-class Node{
-    int data;
-    Node left;
-    Node right;
-    Node(int data){
-        this.data=  data;
-        left= null;
-        right= null;
-    }
-}
-
 public class Check_if_Tree_is_Isomorphic {
+    static class Node{
+        int data;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data=  data;
+            left= null;
+            right= null;
+        }
+    }
+
     boolean isIsomorphic(Node root1, Node root2) {
         if (root1 == null && root2 == null) return true;
 

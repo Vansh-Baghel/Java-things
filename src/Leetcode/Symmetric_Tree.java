@@ -66,7 +66,6 @@ public class Symmetric_Tree {
     private boolean isSymmetricTreeCheck(TreeNode left, TreeNode right) {
         if (left == null || right == null) return left == right;
 
-
 //        Left ka left must be equal to right ka right and left ka right must be equal to right ka left. If these 2 conditions return true, then answer is true.
         return ((isSymmetricTreeCheck(left.left , right.right)) && (isSymmetricTreeCheck(left.right , right.left)));
     }
@@ -84,5 +83,20 @@ public class Symmetric_Tree {
         if (left.val != right.val) return false;
 
         return isSymmetricCheck2(left.left, right.right) && isSymmetricCheck2(left.right, right.left);
+    }
+
+    static boolean isSymmetric3(TreeNode root){
+        if (root == null) return true;
+        return isBothSymmetric(root.left, root.right);
+    }
+
+    private static boolean isBothSymmetric(TreeNode left, TreeNode right) {
+        if (left == null && right == null) return true;
+
+        if (left == null || right == null) return false;
+
+        if (left.val != right.val) return false;
+
+        return isBothSymmetric( left.left, right.right) && isBothSymmetric( left.right, right.left);
     }
 }

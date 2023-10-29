@@ -66,7 +66,7 @@ public class Maximum_Width_of_Binary_Tree {
     public static void main(String[] args) {
         Integer[] parentArray = {1,3,2,5,3,null,9};
         TreeNode root = constructBinaryTree(parentArray);
-        System.out.println(widthOfBinaryTree(root));
+        System.out.println(widthOfBinaryTree2(root));
     }
 
     static int widthOfBinaryTree(TreeNode root) {
@@ -126,4 +126,33 @@ public class Maximum_Width_of_Binary_Tree {
         return ans;
     }
 
+    // This didn't work for last 2 test cases, not sure why
+    static int widthOfBinaryTree2(TreeNode root) {
+        int ans = 0, rightIdx = 0, leftIdx = 0;
+
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(root, 0));
+
+        while (!q.isEmpty()){
+            int size = q.size();
+            rightIdx = 0; leftIdx = 0;
+
+            for (int i = 0; i < size; i++) {
+                Pair top = q.poll();
+                int idx = top.index;
+                TreeNode curNode = top.node;
+
+                if (i == 0){
+                    leftIdx = idx;
+                }
+                else if (i == size - 1){
+                    rightIdx = idx;
+                }
+                if (curNode.left != null) q.add(new Pair(curNode.left, 2 * idx + 1));
+                if (curNode.right != null) q.add(new Pair(curNode.right, 2 * idx + 2));
+            }
+            ans = Math.max(ans, rightIdx - leftIdx + 1);
+        }
+        return ans;
+    }
 }

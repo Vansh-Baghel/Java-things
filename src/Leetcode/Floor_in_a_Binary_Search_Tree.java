@@ -15,7 +15,6 @@ public class Floor_in_a_Binary_Search_Tree {    public static class Node {
     }
 }
 
-
     public static Node constructBinaryTree(Integer[] parentArray) {
         if (parentArray == null || parentArray.length == 0) {
             return null;

@@ -43,14 +43,17 @@ public class Path_Sum_II {
         Integer[] parentArray = {1,2};
         TreeNode root = constructBinaryTree(parentArray);
 
-        List<List<Integer>> ans = pathSum(root, 22);
+        List<List<Integer>> ans = pathSum2(root, 1);
 
         for (List<Integer> innerList : ans) {
             for (Integer value : innerList) {
                 System.out.print(value + " ");
             }
             System.out.println();
-        }    }
+        }
+
+        System.out.println(ans);
+    }
 
     static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         List<List<Integer>> ans = new ArrayList<>();
@@ -79,5 +82,27 @@ public class Path_Sum_II {
 
     static boolean isLeaf(TreeNode root) {
         return root.left == null && root.right == null;
+    }
+
+    public static List<List<Integer>> pathSum2(TreeNode root, int targetSum) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+
+        findTargetPath(root, targetSum, list, ans);
+
+        return ans;
+    }
+
+    private static void findTargetPath(TreeNode root, int targetSum, List<Integer> list, List<List<Integer>> ans) {
+        if (root == null) return;
+
+        list.add(root.val);
+        findTargetPath(root.left, targetSum - root.val, list, ans);
+        findTargetPath(root.right, targetSum - root.val, list, ans);
+
+        // Root to leaf is the path. targetSum == root.val because we are changing the target before moving down, there at leaf it will be the leaf ka value.
+        if (root.left == null && root.right == null) if (targetSum == root.val) ans.add(new ArrayList<>(list));
+
+        list.remove(list.size() - 1);
     }
 }

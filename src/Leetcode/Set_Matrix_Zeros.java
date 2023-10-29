@@ -1,43 +1,117 @@
 //https://leetcode.com/problems/set-matrix-zeroes/
 package Leetcode;
 
+import java.util.Arrays;
+
 public class Set_Matrix_Zeros {
     public static void main(String[] args) {
         int[][] arr = {{1,1,1} , {1,0,1} , {1,1,1}};
-        setZeroes(arr);
+        setZeroes2(arr);
     }
     static void setZeroes(int[][] matrix) {
-        int rows = matrix.length;
-//        Ofc if any row has some length then all rows will have same length.
-        int cols = matrix[0].length;
+        // Better than Brute force.
+        // Time complexity : O((m * n) + (m + n * no. of 1) + (n + m * no. of 1))
+        // Space complexity : O(n + m)
+        // int rowLength = matrix.length;
+        // int colLength = matrix[0].length;
 
-//        Used to check if in given matrix does 1st col contain 0 or not , because other elements will convert the 1st col elements as 0 which eventually will convert the whole 1st col as 0 which we dont want.
+        // int[] outerRow = new int[rowLength];
+        // int[] outerCol = new int[colLength];
+
+        // for (int i = 0 ; i < rowLength; i++){
+        //     for (int j= 0 ; j < colLength ; j++){
+        //         if (matrix[i][j] == 0){
+        //             outerRow[i] = 1;
+        //             outerCol[j] = 1;
+        //         }
+        //     }
+        // }
+
+        // for (int i = 0 ; i < outerRow.length ; i++){
+        //     if (outerRow[i] == 1){
+        //         for (int j = 0 ; j < matrix[0].length; j++){
+        //             matrix[i][j] = 0;
+        //         }
+        //     }
+        // }
+
+        // for (int i = 0 ; i < outerCol.length ; i++){
+        //     if (outerCol[i] == 1){
+        //         for (int j = 0 ; j < matrix.length; j++){
+        //             matrix[j][i] = 0;
+        //         }
+        //     }
+        // }
+
+        // Optimal Sol
+        // Time complexity: O(m * n + (m - 1) * (n - 1) + m + n) ie O(2 * m * n)
+        // Space complexity : O(1)
+        int rowLength = matrix.length;
+        int colLength = matrix[0].length;
         int col0 = 1;
 
-        for (int i = 0; i < rows; i++) {
-//            If any of the element from 1st col is 0 in given matrix , only then we have to set full col 1 as 0 . Because other elements which are 0 will set 1st col k elements as 0 .
-                if (matrix[i][0] == 0) {
-                    col0 = 0;
-                }
-//                Check from 2nd col otherwise if we check from 1st col then it will make all the other elements in the 1st row as 0 because mat[0][0] will become 0 if any of the elements from 1st col is 0.
-            for (int j = 1; j < cols; j++) {
-                if (matrix[i][j] == 0){
-                    matrix[0][j] = matrix[i][0] = 0;
-                }
+        for (int i = 0 ; i < rowLength; i++){
+            for (int j= 0 ; j < colLength ; j++){
+                if (matrix[i][j] == 0 && j != 0){
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                } else if (matrix[i][j] == 0 && j == 0) col0 = 0;
             }
         }
 
-        for (int i = rows - 1 ; i >= 0 ; i--) {
-            for (int j = cols - 1 ; j >= 1; j--) {
-                if (matrix[0][j] == 0 || matrix[i][0] == 0){
-                    matrix[i][j] = 0;
-                }
+        // First mark 0 to the elements which are not at 0th position
+        for (int i = 1 ; i < rowLength; i++){
+            for (int j = 1 ; j < colLength ; j++){
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) matrix[i][j] = 0;
             }
-//            If col0 = 0 then everytime when col loop gets over , make the 1st element of different rows as 0,
-            if (col0 == 0){
+        }
+
+        // If there exist any 0 in first row then m[0][0] would already by 0 by the very first loop, and if there are any 0 in first col then col0 would already be 0.
+        // Therefore convert this separately because if we dont, and by any case if m[0][0] is converted to 0, then it will affect other rows as well.
+        if (matrix[0][0] == 0) {
+            for (int j = 0 ; j < colLength ; j++){
+                matrix[0][j] = 0;
+            }
+        }
+        if (col0 == 0) {
+            for (int i = 0 ; i < rowLength ; i++){
                 matrix[i][0] = 0;
             }
         }
+    }
+
+    static void setZeroes2(int[][] matrix) {
+        int n = matrix.length, m = matrix[0].length;
+        int[] row = new int[n];
+        int[] col = new int[m];
+
+        Arrays.fill(row, -1);
+        Arrays.fill(col, -1);
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (matrix[i][j] == 0){
+                    row[i] = 0;
+                    col[j] = 0;
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (row[i] == 0){
+                for (int j = 0; j < m; j++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            if (col[i] == 0){
+                for (int j = 0; j < n; j++) {
+                    matrix[j][i] = 0;
+                }
+            }
         }
     }
+}
 

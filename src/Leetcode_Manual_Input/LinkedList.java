@@ -1,6 +1,16 @@
 package Leetcode_Manual_Input;
 
 public class LinkedList {
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
 
     public static ListNode arrayToList(int[] arr) {
         if (arr == null || arr.length == 0) {
@@ -33,15 +43,4 @@ public class LinkedList {
         ListNode head = arrayToList(arr);
         printList(head);
     }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
 }

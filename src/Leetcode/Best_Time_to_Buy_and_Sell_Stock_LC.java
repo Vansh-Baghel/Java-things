@@ -1,6 +1,6 @@
 package Leetcode;
 
-public class Best_Time_to_Buy_and_Sell_Stock {
+public class Best_Time_to_Buy_and_Sell_Stock_LC {
     public int maxProfit(int[] prices) {
         int minPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
