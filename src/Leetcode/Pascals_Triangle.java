@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Pascals_Triangle {
     public static void main(String[] args) {
-        System.out.println(generate2(5));
+        System.out.println(nthRowOfPascalTriangle(5));
     }
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> arr = new ArrayList<>();
@@ -38,5 +38,46 @@ public class Pascals_Triangle {
             ans.add(list);
         }
         return ans;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static ArrayList<Long> nthRowOfPascalTriangle(int n) {
+        ArrayList<Long> prev = new ArrayList<>();
+
+        for (int r = 0; r < n; r++) {
+            ArrayList<Long> cur = new ArrayList<>();
+            long mod = 1000000007;
+
+            for (int c = 0; c <= r; c++) {
+                if (c == 0 || c == r){
+                    cur.add((long)(1));
+                } else {
+                    long sum = (prev.get(c-1) + prev.get(c)) % mod;
+                    cur.add(sum);
+                }
+            }
+            prev = cur;
+        }
+
+        return prev;
     }
 }

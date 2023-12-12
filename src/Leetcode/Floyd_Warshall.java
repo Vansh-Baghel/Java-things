@@ -31,4 +31,58 @@ public class Floyd_Warshall {
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void shortest_distance2(int[][] matrix) {
+        // Code here
+        int n = matrix.length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                // Converting -1 temporarily to high value
+                if (matrix[i][j] == -1) matrix[i][j] = 10000;
+            }
+        }
+
+        for (int via = 0; via < n; via++) {
+            for (int row = 0; row < n; row++) {
+                for (int col = 0; col < n; col++) {
+                        matrix[row][col] = Math.min(matrix[row][col], matrix[row][via] + matrix[via][col]);
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                // Converting -1 temporarily to high value
+                if (matrix[i][j] == 10000) matrix[i][j] = -1;
+            }
+        }
+    }
 }

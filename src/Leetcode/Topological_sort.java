@@ -66,4 +66,61 @@ public class Topological_sort {
         }
          return ans;
     }
+
+    static int[] topoSort3(int V, ArrayList<ArrayList<Integer>> adj) {
+        boolean[] vis = new boolean[V];
+        Stack<Integer> st = new Stack<>();
+        int[] ans = new int[V];
+
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]){
+                topoDFS(i, adj, vis, st);
+            }
+        }
+
+        int size = st.size();
+        for (int i = 0; i < size; i++) {
+            ans[i] = st.pop();
+        }
+
+        return ans;
+    }
+
+    private static void topoDFS(int u, ArrayList<ArrayList<Integer>> adj, boolean[] vis, Stack<Integer> st) {
+        vis[u] = true;
+
+        for(int v: adj.get(u)){
+            if (!vis[v]){
+                topoDFS(v,adj,vis,st);
+            }
+        }
+        st.add(u);
+    }
+
+    static int[] topoSort4(int V, ArrayList<ArrayList<Integer>> adj) {
+        int[] degree = new int[V];
+        int[] ans = new int[V];
+        int k = 0;
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 0; i < adj.size(); i++) {
+           for(int it: adj.get(i)) degree[it]++;
+        }
+
+        for (int i = 0; i < V; i++) {
+            if (degree[i] == 0) q.add(i);
+        }
+
+        while (!q.isEmpty()){
+            int u = q.poll();
+            ans[k++] = u;
+
+            for (int v: adj.get(u)){
+                degree[v]--;
+                if (degree[v] == 0) q.add(v);
+            }
+        }
+
+        return ans;
+    }
 }

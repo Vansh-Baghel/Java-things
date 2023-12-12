@@ -2,7 +2,7 @@ package Leetcode;
 
 public class Prime_Number {
     public static void main(String[] args) {
-        System.out.println(isPrime(11));
+        System.out.println(isPrime(997));
     }
 
     static int isPrime(int N){

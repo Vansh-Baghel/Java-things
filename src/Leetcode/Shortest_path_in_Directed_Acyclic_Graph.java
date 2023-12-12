@@ -1,19 +1,17 @@
 package Leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 
 public class Shortest_path_in_Directed_Acyclic_Graph {
-    static class Pair{
-        int first;
-        int weight;
-        public Pair(int first, int weight){
-            this.first = first;
-            this.weight = weight;
+    static class Pair {
+        int distance;
+        int node;
+
+        public Pair(int distance, int node) {
+            this.distance = distance;
+            this.node = node;
         }
     }
-
     public static void main(String[] args) {
         int[][] edges = {{0, 1, 2},  {0, 2, 1}};
         int[] ans = shortestPath(4,2, edges);
@@ -52,8 +50,8 @@ public class Shortest_path_in_Directed_Acyclic_Graph {
             int top = st.pop();
 
             for(Pair it: adj.get(top)){
-                int node = it.first;
-                int wt = it.weight;
+                int node = it.distance;
+                int wt = it.node;
                 int totalWt = shortestPath[top] + wt;
 
                 if (totalWt < shortestPath[node]) {
@@ -73,10 +71,91 @@ public class Shortest_path_in_Directed_Acyclic_Graph {
         vis[node] = true;
 
         for(Pair it: adj.get(node)){
-            if (!vis[it.first]){
-                dfs(adj, st , vis , it.first);
+            if (!vis[it.distance]){
+                dfs(adj, st , vis , it.distance);
             }
         }
         st.add(node);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public int[] shortestPath2(int N,int M, int[][] edges) {
+        //Code here
+        ArrayList<ArrayList<ArrayList<Integer>>> adj = new ArrayList<>();
+        TreeSet<Pair> treeSet = new TreeSet<>(new Comparator<>() {
+            public int compare(Pair a, Pair b) {
+                if (a.distance == b.distance)
+                    return a.node - b.node;
+                return a.distance - b.distance;
+            }
+        });
+
+        int[] minDist = new int[N];
+        Arrays.fill(minDist, Integer.MAX_VALUE);
+
+        for (int i = 0; i < N; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < edges.length; i++) {
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int dist = edges[i][2];
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(v);
+            list.add(dist);
+            adj.get(u).add(list);
+        }
+
+        treeSet.add(new Pair(0, 0));
+        minDist[0] = 0;
+
+        while (!treeSet.isEmpty()){
+            Pair top = treeSet.pollFirst();
+
+            int dist = top.distance;
+            int node = top.node;
+
+            for (ArrayList<Integer> edge: adj.get(node)){
+                int adjNode = edge.get(0);
+                int adjDist = edge.get(1);
+                int totalDist = adjDist + dist;
+
+                if (totalDist < minDist[adjNode]){
+                    minDist[adjNode] = totalDist;
+                    treeSet.add(new Pair(totalDist, adjNode));
+                }
+            }
+        }
+
+        for (int i = 0; i < minDist.length; i++) {
+            if (minDist[i] == Integer.MAX_VALUE){
+                minDist[i] = -1;
+            }
+        }
+
+        return minDist;
     }
 }

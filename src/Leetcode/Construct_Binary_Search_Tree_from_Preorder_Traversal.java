@@ -75,4 +75,32 @@ public class Construct_Binary_Search_Tree_from_Preorder_Traversal {
         root.right = createPreorder(preorder, max, i);
         return root;
     }
+
+
+
+    static TreeNode bstFromPreorder2(int[] preorder) {
+        int n = preorder.length;
+        return bstFormed(0, n-1, preorder);
+    }
+
+    static TreeNode bstFormed(int start, int end, int[] preorder) {
+        if (start > end) return null;
+
+        TreeNode root = new TreeNode(preorder[start]);
+
+        int idx = start + 1;
+
+        for (int i = idx; i <= end; i++) {
+            if (preorder[i] > preorder[start]) {
+                idx = i;
+                break;
+            }
+        }
+        // while (idx <= end && preorder[idx] < preorder[start]) idx++;
+
+        root.left = bstFormed(start + 1, idx - 1, preorder);
+        root.right = bstFormed(idx, end, preorder);
+
+        return root;
+    }
 }

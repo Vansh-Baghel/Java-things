@@ -1,10 +1,11 @@
 package Leetcode;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Longest_Common_Subsequence {
     public static void main(String[] args) {
-        System.out.println(lcs("adebc", "dcadb"));
+        System.out.println(longestCommonSubsequence("ezupkr", "ubmrapg"));
     }
     public static int lcs(String s, String t) {
         return lcs3(s, t);
@@ -71,6 +72,67 @@ public class Longest_Common_Subsequence {
                 System.out.print(col + " ");
             }
             System.out.println();
+        }
+
+        return dp[n][m];
+    }
+
+
+
+
+
+
+
+
+
+    static int longestCommonSubsequence(String text1, String text2) {
+        int m = text2.length(), n = text1.length();
+        return subseqCount(n - 1,m - 1,text1,text2);
+    }
+
+    private static int subseqCount(int idx1, int idx2, String text1, String text2) {
+        if (idx1 < 0 || idx2 < 0) return 0;
+        if (text1.charAt(idx1) == text2.charAt(idx2)) return 1 + subseqCount(idx1 - 1, idx2 - 1, text1, text2);
+
+        int t1 = subseqCount(idx1 - 1, idx2, text1, text2);
+        int t2 = subseqCount(idx1, idx2 - 1, text1, text2);
+
+        return Math.max(t1, t2);
+    }
+
+    static int longestCommonSubsequence2(String text1, String text2) {
+        int n = text1.length(), m = text2.length();
+        int[][] dp = new int[n][m];
+        for (int[] r: dp) Arrays.fill(r, -1);
+        return subseqCount(n - 1,m - 1,text1,text2, dp);
+    }
+
+    private static int subseqCount(int idx1, int idx2, String text1, String text2, int[][] dp) {
+        if (idx1 < 0 || idx2 < 0) return 0;
+        if (text1.charAt(idx1) == text2.charAt(idx2)) return 1 + subseqCount(idx1 - 1, idx2 - 1, text1, text2, dp);
+
+        if (dp[idx1][idx2] != -1) return dp[idx1][idx2];
+
+        int t1 = subseqCount(idx1 - 1, idx2, text1, text2, dp);
+        int t2 = subseqCount(idx1, idx2 - 1, text1, text2, dp);
+
+        return dp[idx1][idx2] = Math.max(t1, t2);
+    }
+
+    static int longestCommonSubsequence3(String text1, String text2) {
+        int n = text1.length(), m = text2.length();
+        int[][] dp = new int[n+1][m+1];
+
+        for (int idx1 = 1; idx1 <= n; idx1++) {
+            for (int idx2 = 1; idx2 <= m; idx2++) {
+                if (text1.charAt(idx1 - 1) == text2.charAt(idx2 - 1)) dp[idx1][idx2] = 1 + dp[idx1 - 1][idx2 - 1];
+                else {
+                    int t1 = dp[idx1 - 1][idx2];
+                    int t2 = dp[idx1][idx2 - 1];
+
+                    dp[idx1][idx2] = Math.max(t1, t2);
+                }
+            }
         }
 
         return dp[n][m];

@@ -15,4 +15,28 @@ public class Contains_Duplicate_II {
         }
         return false;
     }
+
+
+
+
+
+
+
+
+    // Sliding window approach
+    public boolean containsNearbyDuplicate2(int[] nums, int k) {
+        HashSet<Integer> hs = new HashSet<>();
+        int s = 0, n = nums.length;
+
+        for (int e = 0; e < n; e++) {
+            if (!hs.add(nums[e])) return true;
+            else hs.add(nums[e]);
+
+            if (e - s == k){
+                hs.remove(nums[s++]);
+            }
+        }
+
+        return false;
+    }
 }

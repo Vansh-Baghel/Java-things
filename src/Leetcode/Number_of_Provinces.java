@@ -32,6 +32,7 @@ public class Number_of_Provinces {
         System.out.println(ans);
     }
 
+
     // Converted to new list method
     static int numProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
         ArrayList<ArrayList<Integer>> adjLs = new ArrayList<>();
@@ -135,5 +136,88 @@ public class Number_of_Provinces {
             }
         }
         return ans;
+    }
+
+
+    public int findCircleNum(int[][] isConnected) {
+        int n = isConnected.length, cnt=0;
+        boolean[] vis = new boolean[n];
+        List<List<Integer>> adj = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) continue;
+                else if (isConnected[i][j] == 1){
+                    adj.get(i).add(j);
+                    adj.get(j).add(i);
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+                if (!vis[i]){
+                    normalDFS(i,vis,adj);
+                    cnt++;
+                }
+        }
+
+        return cnt;
+    }
+
+    private void normalDFS(int u, boolean[] vis, List<List<Integer>> adj) {
+        vis[u] = true;
+
+        for (int v : adj.get(u)){
+            if (!vis[v]) normalDFS(v, vis, adj);
+        }
+    }
+
+    public int findCircleNum2(int[][] isConnected) {
+        int V = isConnected.length;
+        boolean[] vis = new boolean[V];
+        Queue<Integer> q = new LinkedList<>();
+        int ans = 0;
+        List<List<Integer>> adj = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                if (i == j) continue;
+                else if (isConnected[i][j] == 1){
+                    adj.get(i).add(j);
+                    adj.get(j).add(i);
+                }
+            }
+        }
+
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]){
+                q.add(i);
+                bfs(vis, adj, q);
+                ans++;
+            }
+        }
+
+        return ans;
+    }
+
+    private void bfs(boolean[] vis, List<List<Integer>> adj, Queue<Integer> q) {
+        while (!q.isEmpty()){
+            int node = q.poll();
+
+            for (int v: adj.get(node)){
+                if (!vis[v]) {
+                    vis[v]=true;
+                    q.add(v);
+                }
+            }
+        }
     }
 }

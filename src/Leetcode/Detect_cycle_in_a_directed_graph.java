@@ -90,4 +90,65 @@ public class Detect_cycle_in_a_directed_graph {
         if (count != V) return true;
         return false;
     }
+
+
+    static boolean isCyclic3(int V, ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        boolean[] vis = new boolean[V];
+        boolean[] inRecursion = new boolean[V];
+
+        for (int i = 0; i < V; i++) {
+            if (!vis[i] && isCycleDFS(i, vis, inRecursion, adj)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    static boolean isCycleDFS(int u, boolean[] vis, boolean[] inRecursion, ArrayList<ArrayList<Integer>> adj) {
+        vis[u] = true;
+        inRecursion[u]=true;
+
+        for (int v: adj.get(u)){
+            if (!vis[v] && isCycleDFS(v, vis, inRecursion,adj)){
+                return true;
+            } else if (inRecursion[v]) return true;
+        }
+
+        inRecursion[u]=false;
+        return false;
+    }
+
+
+    public boolean isCyclic4(int V, ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        int[] indegree = new int[V];
+        int size = 0;
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 0; i < V; i++) {
+            for (int it: adj.get(i)){
+                indegree[it]++;
+            }
+        }
+
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) {
+                q.add(i);
+            }
+        }
+
+        while (!q.isEmpty()){
+            int u = q.poll();
+            size++;
+
+            for (int v: adj.get(u)){
+                indegree[v]--;
+                if (indegree[v] == 0) q.add(v);
+            }
+        }
+
+        return size != V;
+    }
 }

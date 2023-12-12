@@ -2,14 +2,14 @@ package Leetcode;
 import java.util.*;
 
 public class Detect_cycle_in_an_undirected_graph {
-            static class Pair{
-                int first;
-                int parent;
-                public Pair(int first, int parent){
-                    this.first = first;
-                    this.parent = parent;
-                }
-            }
+    static class Pair{
+        int first;
+        int parent;
+        public Pair(int first, int parent){
+            this.first = first;
+            this.parent = parent;
+        }
+    }
 
     public static void main(String[] args) {
         ArrayList<ArrayList<Integer>> edgeList = new ArrayList<>();
@@ -72,6 +72,76 @@ public class Detect_cycle_in_an_undirected_graph {
                 }
             }
         }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public boolean isCycle2(int V, ArrayList<ArrayList<Integer>> adj) {
+         boolean[] vis = new boolean[V];
+
+        for (int i = 0; i < V; i++) {
+            if (!vis[i] && isCycleDFS(i, adj, vis, -1)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isCycleDFS(int u, ArrayList<ArrayList<Integer>> adj, boolean[] vis, int parent) {
+        vis[u] = true;
+
+        for (int v: adj.get(u)){
+            if (vis[v]){
+                if(parent != v) return true;
+            } else if (isCycleDFS(v, adj, vis, u)) return true;
+        }
+
+        return false;
+    }
+
+
+    public boolean isCycle3(int V, ArrayList<ArrayList<Integer>> adj) {
+    boolean[] vis = new boolean[V];
+
+        for (int i = 0; i < V; i++) {
+        if (!vis[i] && isCycleBFS(i, vis, adj)){
+            return true;
+        }
+    }
+
+        return false;
+}
+
+    private boolean isCycleBFS(int u, boolean[] vis, ArrayList<ArrayList<Integer>> adj) {
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(u, -1));
+        vis[u] = true;
+
+        while (!q.isEmpty()){
+            Pair top = q.poll();
+            int node = top.first;
+            int par = top.parent;
+
+            for (int v: adj.get(node)){
+                if (!vis[v]){
+                    vis[v] = true;
+                    q.add(new Pair(v, node));
+                } else if (par != v) return true;
+            }
+        }
+
         return false;
     }
 }

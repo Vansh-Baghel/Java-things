@@ -106,4 +106,69 @@ public class Unique_Paths {
         }
         return cur[n-1];
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static int uniquePath1(int m, int n) {
+        return totalUniquePaths(m - 1, n - 1);
+    }
+
+    private static int totalUniquePaths(int m, int n) {
+        if (m < 0 || n < 0) return 0;
+        if (m == 0 && n == 0) return 1;
+
+        int up = totalUniquePaths(m - 1, n);
+        int left = totalUniquePaths(m, n - 1);
+
+        return up + left;
+    }
+
+    static int uniquePath2(int m, int n) {
+        int[][] dp = new int[m][n];
+        for (int[] r: dp) Arrays.fill(r, -1);
+        return totalUniquePaths(m - 1, n - 1, dp);
+    }
+
+    private static int totalUniquePaths(int m, int n, int[][] dp) {
+        if (m < 0 || n < 0) return 0;
+        if (m == 0 && n == 0) return 1;
+
+        if (dp[m][n] != -1) return dp[m][n];
+
+        int up = totalUniquePaths(m - 1, n, dp);
+        int left = totalUniquePaths(m, n - 1, dp);
+
+        return dp[m][n] = up + left;
+    }
+
+    static int uniquePath3(int m, int n) {
+        int[][] dp = new int[m][n];
+
+        for (int i = 0; i < m; i++) {
+            dp[i][0] = 1;
+        }
+        for (int i = 0; i < n; i++) {
+            dp[0][i] = 1;
+        }
+
+        for (int r = 1; r < m; r++) {
+            for (int c = 1; c < n; c++) {
+                int up = dp[r - 1][c];
+                int left = dp[r][c - 1];
+                dp[r][c] = up + left;
+            }
+        }
+
+        return dp[m - 1][n - 1];
+    }
 }

@@ -99,4 +99,29 @@ public class Symmetric_Tree {
 
         return isBothSymmetric( left.left, right.right) && isBothSymmetric( left.right, right.left);
     }
+
+    class Node{
+        int data;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data = data;
+            left=null;
+            right=null;
+        }
+    }
+
+    public static boolean isSymmetric(Node root){
+        if (root == null) return true;
+        return isTreeSymmetric(root.left, root.right);
+    }
+
+    private static boolean isTreeSymmetric(Node left, Node right) {
+        if (left == null || right == null){
+            return left == null && right == null;
+        }
+        if (left.data != right.data) return false;
+
+        return isTreeSymmetric(left.left, right.right) && isTreeSymmetric(left.right, right.left);
+    }
 }

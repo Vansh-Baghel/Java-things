@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Combination_Sum_II {
     public static void main(String[] args) {
-        int[] arr = {2,5,2,1,2};
-        System.out.println(combinationSum2(arr , 5));
+        int[] arr = {10,1,2,7,6,1,5};
+        System.out.println(combinationSum2_3(arr , 8));
     }
 
     static List<List<Integer>> combinationSum2(int[] candidates, int target) {
@@ -64,6 +64,45 @@ public class Combination_Sum_II {
 
             list.add(candidates[i]);
             getAllCombinations(candidates, ans, list, target - candidates[i], i+1);
+            list.remove(list.size() - 1);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    static List<List<Integer>> combinationSum2_3(int[] candidates, int target) {
+        List<Integer> list = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+        int n = candidates.length;
+
+        Arrays.sort(candidates);
+        getAllCombinations(0, n, target, list, ans, candidates);
+
+//        System.out.println(ans);
+        return ans;
+    }
+
+    static void getAllCombinations(int idx, int n, int target, List<Integer> list, List<List<Integer>> ans, int[] candidates) {
+        if (target == 0) {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+
+        for (int i = idx; i < n; i++) {
+            if (target < 0) break;
+
+            // i > idx means for the first index of the loop. It shouldn't matter for that.
+            if (i > idx && candidates[i] == candidates[i - 1]) continue;
+
+            list.add(candidates[i]);
+            getAllCombinations(i + 1, n, target - candidates[i], list, ans, candidates);
             list.remove(list.size() - 1);
         }
     }

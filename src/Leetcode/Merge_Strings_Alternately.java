@@ -3,20 +3,41 @@ import java.util.*;
 
 public class Merge_Strings_Alternately {
     public String mergeAlternately(String word1, String word2) {
+        int n = word1.length(), m = word2.length(), l = Math.min(n,m);
+        String ans = "";
+
+        for (int i = 0; i < l; i++) {
+            ans+=word1.charAt(i);
+            ans+=word2.charAt(i);
+        }
+
+        if (l == m){
+            while (l < n){
+                ans += word1.charAt(l);
+                l++;
+            }
+        } else {
+            while (l < m){
+                ans += word2.charAt(l);
+                l++;
+            }
+        }
+
+        return ans;
+    }
+
+    static String mergeAlternately2(String word1, String word2) {
+        StringBuilder result = new StringBuilder();
         int i = 0;
-        int j = 0;
-        int k = 0;
-        Character[] ans = new Character[word1.length() + word2.length()];
-        while (word1.length() != i && word2.length() != j){
-            ans[k++] = word1.charAt(i++);
-            ans[k++] = word2.charAt(j++);
+        while (i < word1.length() || i < word2.length()) {
+            if (i < word1.length()) {
+                result.append(word1.charAt(i));
+            }
+            if (i < word2.length()) {
+                result.append(word2.charAt(i));
+            }
+            i++;
         }
-        while (word1.length() != i){
-            ans[k++] = word1.charAt(i++);
-        }
-        while (word2.length() != j){
-            ans[k++] = word2.charAt(j++);
-        }
-        return Arrays.toString(ans).replaceAll("\\[|\\]|,|\\s", "");
+        return result.toString();
     }
 }

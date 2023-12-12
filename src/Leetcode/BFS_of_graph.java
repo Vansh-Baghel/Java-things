@@ -68,4 +68,26 @@ public class BFS_of_graph {
         }
         return ans;
     }
+
+    public ArrayList<Integer> bfsOfGraph2(int V, ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        Queue<Integer> q = new LinkedList<>();
+        boolean[] vis = new boolean[V];
+        q.add(0);
+        vis[0] = true;
+        ans.add(0);
+
+        while (!q.isEmpty()){
+            int u = q.poll();
+
+            for (int v: adj.get(u)){
+                if (!vis[v]){
+                    vis[v] = true;
+                    q.add(v);
+                    ans.add(v);
+                }
+            }
+        }
+        return ans;
+    }
 }

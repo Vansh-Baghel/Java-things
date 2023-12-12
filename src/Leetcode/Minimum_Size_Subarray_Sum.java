@@ -2,9 +2,9 @@ package Leetcode;
 
 public class Minimum_Size_Subarray_Sum {
     public static void main(String[] args) {
-        int[] n = {2,3,1,2,4,3};
+        int[] n = {1,2,3,4,5};
 
-        System.out.println(minSubArrayLen2(7, n));
+        System.out.println(minSubArrayLen3(11, n));
     }
 
     // Run for few cases
@@ -47,5 +47,34 @@ public class Minimum_Size_Subarray_Sum {
             }
         }
         return mini == Integer.MAX_VALUE ? 0 : mini;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    static int minSubArrayLen3(int target, int[] nums) {
+        int res= Integer.MAX_VALUE, s = 0, e = 0, n = nums.length, sum = 0;
+
+        while (e < n){
+            sum+=nums[e];
+
+            while(sum>=target){
+                 sum-=nums[s];
+                 s++;
+                int range = (e - s) + 2;
+                res= Math.min(res, range);
+            }
+
+            e++;
+        }
+
+        return res == Integer.MAX_VALUE ? 0 : res;
     }
 }
