@@ -11,7 +11,6 @@ public class LinkedList {
         }
     }
 
-
     public static ListNode arrayToList(int[] arr) {
         if (arr == null || arr.length == 0) {
             return null;

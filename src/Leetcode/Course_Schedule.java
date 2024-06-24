@@ -3,10 +3,20 @@ import java.util.*;
 
 public class Course_Schedule {
     public static void main(String[] args) {
-        int[][] prerequisites = {{1, 0}, {0, 1}};
+        int[][] prerequisitesArray = {{12, 2}, {6, 0}, {0, 1}};
 
-        System.out.println(canFinish(2, prerequisites));
+        ArrayList<ArrayList<Integer>> prerequisites = new ArrayList<>();
+        for (int[] pair : prerequisitesArray) {
+            ArrayList<Integer> prerequisitePair = new ArrayList<>();
+            for (int num : pair) {
+                prerequisitePair.add(num);
+            }
+            prerequisites.add(prerequisitePair);
+        }
+
+        System.out.println(Arrays.toString(findOrder2(2, 1, prerequisites)));
     }
+
     static int[] findOrder(int n, int m, ArrayList<ArrayList<Integer>> prerequisites) {
         int V = n;
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
@@ -14,6 +24,7 @@ public class Course_Schedule {
         int[] inorder = new int[V];
         int[] ans = new int[n];
         int ind = 0;
+
         for (int i = 0; i < V; i++) {
             adj.add(new ArrayList<>());
         }
@@ -128,5 +139,57 @@ public class Course_Schedule {
         inRecursion[u]=false;
 
         return false;
+    }
+
+
+
+    static int[] findOrder2(int n, int m, ArrayList<ArrayList<Integer>> prerequisites) {
+        // DFS mai 2 arrays use krna hoga, BFS mai Kahn's Algo for Topological sort will work.
+
+        // Why vis failed? Because aise bhi
+        int[] indegree = new int[n];
+        Queue<Integer> q = new LinkedList<>();
+        int[] res = new int[n];
+
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+
+        for (int i = 0; i <= n; i++){
+            adj.add(new ArrayList<>());
+        }
+
+        for (ArrayList<Integer> pre: prerequisites){
+            int u = pre.get(1), v = pre.get(0);
+            adj.get(u).add(v);
+
+            // Means andar aara hai arrow, waha plus krdo
+            indegree[v]++;
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (indegree[i] == 0) q.add(i);
+        }
+
+        int idx = 0;
+
+        while (!q.isEmpty()){
+            int s = q.size();
+
+            for (int i = 0; i < s; i++){
+                int node = q.poll();
+                res[idx++] = node;
+
+                for (int it: adj.get(node)){
+                    indegree[it]--;
+
+                    if (indegree[it] == 0){
+                        q.add(it);
+                    }
+                }
+            }
+        }
+
+        if (idx == n) return res;
+
+        return new int[]{};
     }
 }

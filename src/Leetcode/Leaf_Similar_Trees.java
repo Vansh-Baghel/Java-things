@@ -54,12 +54,12 @@ public class Leaf_Similar_Trees {
     }
 
     public static void main(String[] args) {
-        Integer[] parentArray1 = {3,5,1,6,2,9,8,null,null,7,14};
-        Integer[] parentArray2 = {3,5,1,6,71,4,2,null,null,null,null,null,null,9,8};
+        Integer[] parentArray1 = {3,5,1,6,2,9,8,null,null,7,4};
+        Integer[] parentArray2 = {3,5,1,6,7,4,2,null,null,null,null,null,null,9,8};
         TreeNode root1 = constructBinaryTree(parentArray1);
         TreeNode root2 = constructBinaryTree(parentArray2);
 
-        boolean ans = leafSimilar(root1, root2);
+        boolean ans = leafSimilar2(root1, root2);
         System.out.println(ans);
     }
 
@@ -83,5 +83,51 @@ public class Leaf_Similar_Trees {
 
         getAllLeafNodes(root.left, list);
         getAllLeafNodes(root.right, list);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static boolean leafSimilar2(TreeNode root1, TreeNode root2) {
+        StringBuilder str1 = new StringBuilder();
+        StringBuilder str2 = new StringBuilder();
+
+        getAllLeafNodes(root1, str1);
+        getAllLeafNodes(root2, str2);
+        return str1.toString().equals(str2.toString());
+    }
+
+    static void getAllLeafNodes(TreeNode root, StringBuilder str){
+        if (root == null) return;
+
+        if (root.left == null && root.right == null) {
+            str.append(root.val).append("_");
+            return;
+        }
+
+        getAllLeafNodes(root.left, str);
+        getAllLeafNodes(root.right, str);
     }
 }

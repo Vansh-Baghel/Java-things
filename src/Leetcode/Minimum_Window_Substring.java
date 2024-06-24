@@ -44,4 +44,43 @@ public class Minimum_Window_Substring {
 
         return res;
     }
+
+    static String minWindow2(String s, String t) {
+        String res = "";
+        HashMap<Character, Integer> hm = new HashMap<>();
+
+        int k = t.length(), n = s.length(), start = 0, resSize = Integer.MAX_VALUE;
+
+        for (char ch: t.toCharArray()){
+            hm.put(ch, hm.getOrDefault(ch, 0) + 1);
+        }
+
+        for (int e = 0; e < n; e++){
+            char ch = s.charAt(e);
+            hm.put(ch, hm.getOrDefault(ch, 0) - 1);
+
+            if (hm.get(ch) >= 0) {
+                k--;
+            }
+
+            while (k == 0){
+                char startCh = s.charAt(start);
+                int curSize = e - start + 1;
+
+                hm.put(startCh, hm.get(startCh) + 1);
+
+                if (hm.get(startCh) > 0){
+                    k++;
+                    if (resSize > curSize) {
+                        resSize = curSize;
+                        res = s.substring(start, e + 1);
+                    }
+                }
+
+                start++;
+            }
+        }
+
+        return res;
+    }
 }

@@ -27,4 +27,28 @@ public class Maximum_Subarray {
         }
         return maxSum;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    static int maxSubArray2(int[] nums) {
+        int sum = 0, maxi = Integer.MIN_VALUE;
+
+        for (int num: nums){
+            sum += num;
+
+            maxi = Math.max(maxi, sum);
+            if (sum < 0) sum = 0;
+        }
+
+        return maxi;
+    }
 }

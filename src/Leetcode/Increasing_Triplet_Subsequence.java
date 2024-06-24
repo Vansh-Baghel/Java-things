@@ -2,8 +2,8 @@ package Leetcode;
 
 public class Increasing_Triplet_Subsequence {
     public static void main(String[] args) {
-        int[] arr = {9,8,7,6,5,4,3,2,1};
-        System.out.println(increasingTriplet(arr));
+        int[] arr = {1,2,3};
+        System.out.println(increasingTriplet2(arr));
     }
     static boolean increasingTriplet(int[] nums) {
         // T.C. O(n)
@@ -47,5 +47,25 @@ public class Increasing_Triplet_Subsequence {
         }
 
         return false;
+    }
+
+    static boolean increasingTriplet2(int[] nums) {
+        int n = nums.length;
+        return solve(0, -1, 2, n, nums);
+    }
+
+    static boolean solve (int idx, int prev, int k, int n, int[] nums){
+        // This condition before idx because it last wala num satisfies the condition, then we will not get true.
+        if (k < 0) return true;
+
+        if (idx >= n) return false;
+
+        boolean pick = false, notPick = false;
+
+        if (nums[idx] > prev) pick = solve(idx + 1, nums[idx], k - 1, n, nums);
+        else pick = solve(idx + 1, nums[idx], k, n, nums);
+        notPick = solve(idx + 1, prev, k, n, nums);
+
+        return pick || notPick;
     }
 }

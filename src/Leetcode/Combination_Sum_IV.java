@@ -97,4 +97,72 @@ public class Combination_Sum_IV {
 
         return dp[idx][sum] = pick + notPick;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static int ccombinationSum4(int[] nums, int target) {
+        int n = nums.length;
+        return maxCombinations(n, target, nums);
+    }
+
+    private static int maxCombinations(int n, int target, int[] nums) {
+        if (target == 0) return 1;
+        if (target < 0) return 0;
+
+        int pick = 0;
+
+        for (int i = 0; i < n; i++) {
+            pick += maxCombinations(n, target - nums[i], nums);
+        }
+
+        return pick;
+    }
+
+    static int ccombinationSum4_1(int[] nums, int target) {
+        int n = nums.length;
+        int[][] dp = new int[201][1001];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+        return getAllCombinations_2(0, n,0, nums, target, dp);
+    }
+
+    private static int getAllCombinations_2(int idx, int n, int sum, int[] nums, int target, int[][] dp) {
+        if (sum == target) return 1;
+        if (sum > target || idx > n) return 0;
+        if (dp[idx][sum] != -1) return dp[idx][sum];
+
+        int pick = getAllCombinations_2(0, n, sum + nums[idx], nums, target, dp);
+        int notPick = getAllCombinations_2(idx + 1, n, sum, nums, target, dp);
+
+        return dp[idx][sum] = pick + notPick;
+    }
+
+    static int ccombinationSum4_3(int[] nums, int target) {
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+        for(int i = 1; i <= target; i++) {
+            for(int j : nums) {
+                if(i - j >= 0) {
+                    dp[i] += dp[i-j];
+                }
+            }
+        }
+        return dp[target];
+    }
 }

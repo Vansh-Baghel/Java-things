@@ -37,4 +37,63 @@ public class Remove_NthNode_From_End_of_List {
 
         return head;
     }
+
+
+
+
+
+
+
+
+
+
+
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
+        ListNode dummy = new ListNode();
+        ListNode slow = dummy;
+        ListNode fast = dummy;
+        dummy.next = head;
+
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
+        }
+
+        if (fast.next == null) return head.next;
+
+        while (fast.next != null){
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // slow.next != fast because for conditions like {1,2}, n = 1, it won't work
+        slow.next = slow.next.next;
+
+        return head;
+    }
+
+    public ListNode removeNthFromEnd3(ListNode head, int n) {
+        int size = 0;
+        ListNode temp = head;
+        ListNode traverse = head;
+
+        while (temp != null){
+            size++;
+            temp = temp.next;
+        }
+
+        int k = size - n + 1;
+
+        if (n == size){
+            head = head.next;
+        } else {
+            if (size == 1) return null;
+            for (int i = 1; i < size - n; i++) {
+                traverse = traverse.next;
+            }
+
+            traverse.next = traverse.next.next;
+        }
+
+        return head;
+    }
 }

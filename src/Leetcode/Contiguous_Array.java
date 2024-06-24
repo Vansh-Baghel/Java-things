@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Contiguous_Array {
     public static void main(String[] args) {
         int[] nums = {0,0,1,0,0,0,1,1};
-        System.out.println(findMaxLength2(nums));
+        System.out.println(findMaxLength3(nums));
     }
 
     // Brute force, 10 pow 5 is the limit, and if both the loops run, it will give 10 raise to 10, but 10 raise to 9 gives TLE.
@@ -49,5 +49,24 @@ public class Contiguous_Array {
             }
         }
         return maxi;
+    }
+
+    static int findMaxLength3(int[] nums) {
+        int zeros = 0, ones = 0, res = 0, n = nums.length;
+        boolean flag = false;
+
+        for (int num: nums){
+            if ((ones != 0 || zeros != 0) && zeros == ones) {
+                flag = true;
+                res = zeros;
+            }
+
+            if (num == 0) zeros++;
+            else ones++;
+        }
+
+        if (res == 0 && !flag) return 0;
+        else if (res == 0 && flag) return 2;
+        return res * 2;
     }
 }

@@ -1,8 +1,6 @@
 package Leetcode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Cheapest_Flights_Within_K_Stops {
     static class Tuple{
@@ -26,58 +24,109 @@ public class Cheapest_Flights_Within_K_Stops {
     }
 
     public static void main(String[] args) {
-        int n = 3;
-        int[][] flights = {{0, 1, 2}, {1, 2, 1}, {2, 0, 10}};
-        int src = 1;
+//        int[][] flights = {
+//                {0, 1, 1},
+//                {0, 2, 5},
+//                {1, 2, 1},
+//                {2, 3, 1}
+//        };
+
+        int[][] flights = {
+                {0, 1, 5},
+                {1, 2, 5},
+                {0, 3, 2},
+                {3, 1, 2},
+                {1, 4, 1},
+                {4, 2, 1}
+        };
+
+        int src = 0;
         int dst = 2;
-        int k = 1;
+        int k = 2;
 
-        int result = findCheapestPrice(n, flights, src, dst, k);
+        int result = findCheapestPrice2(flights.length, flights, src, dst, k);
         System.out.println(result);
-
     }
 
     static int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-        int[] price = new int[n];
-        ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
-        Queue<Tuple> q = new LinkedList<>();
-
-        for (int i = 0; i < n; i++) {
-            price[i] = Integer.MAX_VALUE;
+        Map<Integer, List<int[]>> adj = new HashMap<>();
+        for (int[] flight : flights) {
+            adj.computeIfAbsent(flight[0], key -> new ArrayList<>()).add(new int[] {flight[1], flight[2]});
         }
 
-        for (int i = 0; i < n; i++) {
+        int[] dist = new int[n];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[] {src, 0});
+        int stops = 0;
+
+        while (!q.isEmpty() && stops <= k) {
+            int sz = q.size();
+            while (sz-- > 0) {
+                int[] curr = q.poll();
+                int node = curr[0];
+                int distance = curr[1];
+
+                if (!adj.containsKey(node)) continue;
+
+                for (int[] next : adj.get(node)) {
+                    int neighbour = next[0];
+                    int price = next[1];
+                    if (price + distance >= dist[neighbour]) continue;
+                    dist[neighbour] = price + distance;
+                    q.offer(new int[] {neighbour, dist[neighbour]});
+                }
+            }
+            stops++;
+        }
+
+        return dist[dst] == Integer.MAX_VALUE ? -1 : dist[dst];
+    }
+
+
+    // TLE
+    public static int res = Integer.MAX_VALUE;
+
+    public static int findCheapestPrice2(int n, int[][] flights, int src, int dst, int k) {
+        List<List<Pair>> adj = new ArrayList<>();
+
+        for (int i = 0; i < n; i++){
             adj.add(new ArrayList<>());
         }
 
-        for (int i = 0; i < flights.length; i++) {
-            int u = flights[i][0];
-            int v = flights[i][1];
-            int pr = flights[i][2];
-
-            adj.get(u).add(new Pair(v, pr));
+        for (int[] flight : flights){
+            int u = flight[0], v = flight[1], price = flight[2];
+            adj.get(u).add(new Pair(v, price));
         }
 
-        q.add(new Tuple(0, src, 0));
+        dfs(src, dst, k, adj, 0);
 
-        while (!q.isEmpty()){
-            Tuple top = q.poll();
-            int curStep = top.curStep;
-            int topPrice = top.price;
-            int node = top.node;
+        int tmp = res;
+        res = Integer.MAX_VALUE;
 
-            if (curStep == k + 1 && node == dst) return topPrice;
+        return tmp == Integer.MAX_VALUE ? -1 : tmp;
+    }
 
-            for (Pair it: adj.get(node)){
-                int totalPr = it.second + topPrice;
+    public static void dfs(int src, int des, int k, List<List<Pair>> adj, int curSum){
+        for (Pair it: adj.get(src)){
+            int v = it.first, wt = it.second;
+            curSum += wt;
+            k--;
 
-                if (totalPr < price[it.first]){
-                    q.add(new Tuple(curStep + 1, it.first, totalPr));
-                    price[it.first] = totalPr;
-                }
+            if (k < -1) return;
+
+            if (v == des) {
+                res = Math.min(curSum, res);
+                curSum -= wt;
+                k++;
+                continue;
             }
+
+            dfs(v, des, k, adj, curSum);
+            curSum -= wt;
+            k++;
         }
-        if(price[dst] == (int)(1e9)) return -1;
-        return price[dst];
     }
 }

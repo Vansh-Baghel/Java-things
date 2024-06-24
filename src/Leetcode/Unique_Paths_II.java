@@ -99,4 +99,47 @@ public class Unique_Paths_II {
         }
         return cur[m-1];
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        return totalUniquePaths(obstacleGrid.length - 1, obstacleGrid[0].length - 1, obstacleGrid);
+    }
+
+    private int totalUniquePaths(int idx1, int idx2, int[][] obstacleGrid) {
+        if (idx1 < 0 || idx2 < 0 || obstacleGrid[idx1][idx2] == 1) return 0;
+        if (idx1 == idx2 && idx1 == 0) return 1;
+
+        int up = totalUniquePaths(idx1-1, idx2, obstacleGrid);
+        int left = totalUniquePaths(idx1, idx2-1, obstacleGrid);
+
+        return up + left;
+    }
+
+    public int uniquePathsWithObstacles2(int[][] obstacleGrid) {
+        int n = obstacleGrid.length, m = obstacleGrid[0].length;
+        int[][] dp = new int[n][m];
+        for (int[] r: dp) Arrays.fill(r, -1);
+        return totalUniquePaths(n - 1, m - 1, obstacleGrid, dp);
+    }
+
+    private int totalUniquePaths(int idx1, int idx2, int[][] obstacleGrid, int[][] dp) {
+        if (idx1 < 0 || idx2 < 0 || obstacleGrid[idx1][idx2] == 1) return 0;
+        if (idx1 == idx2 && idx1 == 0) return 1;
+        if (dp[idx1][idx2] != -1) return dp[idx1][idx2];
+
+        int up = totalUniquePaths(idx1-1, idx2, obstacleGrid, dp);
+        int left = totalUniquePaths(idx1, idx2-1, obstacleGrid, dp);
+
+        return dp[idx1][idx2] = up + left;
+    }
 }

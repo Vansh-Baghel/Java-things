@@ -102,4 +102,29 @@ public class Lowest_Common_Ancestor_of_a_Binary_Tree {
         if (left != null && right != null) return root;
         return right == null ? left : right;
     }
+
+
+
+
+
+
+
+
+
+
+    static TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+
+        if (root == p || root == q) return root;
+
+        TreeNode left = lowestCommonAncestor3(root.left, p, q);
+
+        if (left != null && left != p && left != q) return left;
+
+        TreeNode right = lowestCommonAncestor3(root.right, p, q);
+
+        if (left != null && right != null) return root;
+
+        return left != null ? left : right;
+    }
 }

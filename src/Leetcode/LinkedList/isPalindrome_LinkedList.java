@@ -2,8 +2,7 @@
 package Leetcode.LinkedList;
 
 public class isPalindrome_LinkedList {
-    public class ListNode {
-
+    public static class ListNode {
         int val;
 
         ListNode next;
@@ -19,10 +18,40 @@ public class isPalindrome_LinkedList {
             this.val = val;
             this.next = next;
         }
-
     }
 
-    public ListNode middleList(ListNode head) {
+    public static ListNode arrayToList(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return null;
+        }
+
+        ListNode head = new ListNode(arr[0]);
+        ListNode current = head;
+
+        for (int i = 1; i < arr.length; i++) {
+            current.next = new ListNode(arr[i]);
+            current = current.next;
+        }
+
+        return head;
+    }
+
+    public static void printList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 3, 2, 1};
+        ListNode head = arrayToList(arr);
+        System.out.println(isPalindrome(head));
+    }
+
+    public static ListNode middleList(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
 
@@ -33,7 +62,7 @@ public class isPalindrome_LinkedList {
         return slow;
     }
 
-        private ListNode reverseList(ListNode head) {
+        private static ListNode reverseList(ListNode head) {
             if (head == null){
                 return head;
             }
@@ -56,7 +85,7 @@ public class isPalindrome_LinkedList {
         }
 
 
-        public boolean isPalindrome(ListNode head) {
+        public static boolean isPalindrome(ListNode head) {
 //        Will return the mid of the list.
             ListNode mid = middleList(head);
 //            Will reverse the list from the mid, ie , the second half.
@@ -82,4 +111,35 @@ public class isPalindrome_LinkedList {
             }
             return false;
         }
+
+
+
+    public static boolean isPalindrome2(ListNode head) {
+        StringBuilder str1 = new StringBuilder(), str2 = new StringBuilder();
+
+        ListNode prev = reverse(head, str1);
+
+        while (prev!=null){
+            str2.append(prev.val);
+            prev=prev.next;
+        }
+
+        return str1.toString().equals(str2.toString());
+    }
+
+    public static ListNode reverse(ListNode cur, StringBuilder str){
+        if (cur == null) return cur;
+
+        ListNode prev = null, nxt = cur.next;
+
+        while (cur!=null){
+            cur.next = prev;
+            str.append(cur.val);
+            prev = cur;
+            cur = nxt;
+            if (nxt != null) nxt = nxt.next;
+        }
+
+        return prev;
+    }
 }

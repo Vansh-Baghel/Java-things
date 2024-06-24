@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class Longest_Common_Subsequence {
     public static void main(String[] args) {
-        System.out.println(longestCommonSubsequence("ezupkr", "ubmrapg"));
+        System.out.println(longestCommonSubsequence("psnw", "vozsh"));
     }
     public static int lcs(String s, String t) {
         return lcs3(s, t);

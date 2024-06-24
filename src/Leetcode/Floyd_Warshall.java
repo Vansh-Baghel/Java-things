@@ -3,7 +3,7 @@ package Leetcode;
 public class Floyd_Warshall {
     public void shortest_distance(int[][] matrix) {
 
-        // You can use Dijkstra if the graph doesn't have negative cycle. It will not work in that case, otherwise dijkstra is best.
+    // You can use Dijkstra if the graph doesn't have negative cycle. It will not work in that case, otherwise dijkstra is best. Also, this find the shortest distance of all the nodes with every other node.
         int n = matrix.length;
 
         for (int i = 0; i < n; i++) {
@@ -32,33 +32,6 @@ public class Floyd_Warshall {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void shortest_distance2(int[][] matrix) {
         // Code here
         int n = matrix.length;
@@ -73,7 +46,7 @@ public class Floyd_Warshall {
         for (int via = 0; via < n; via++) {
             for (int row = 0; row < n; row++) {
                 for (int col = 0; col < n; col++) {
-                        matrix[row][col] = Math.min(matrix[row][col], matrix[row][via] + matrix[via][col]);
+                    matrix[row][col] = Math.min(matrix[row][col], matrix[row][via] + matrix[via][col]);
                 }
             }
         }
@@ -81,6 +54,31 @@ public class Floyd_Warshall {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 // Converting -1 temporarily to high value
+                if (matrix[i][j] == 10000) matrix[i][j] = -1;
+            }
+        }
+    }
+
+    public void shortest_distance3(int[][] matrix){
+        int n = matrix.length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == -1) matrix[i][j] = 10000;
+            }
+        }
+
+        for (int via = 0; via < n; via++) {
+            for (int r = 0; r < n; r++) {
+                for (int c = 0; c < n; c++) {
+                    matrix[r][c] = Math.min(matrix[r][via] + matrix[via][c], matrix[r][c]);
+                }
+            }
+        }
+
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 10000) matrix[i][j] = -1;
             }
         }

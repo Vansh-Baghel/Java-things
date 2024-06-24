@@ -125,6 +125,8 @@ public class Add_One_Row_to_Tree {
 
             root.left.left = curLeft;
             root.right.right = curRight;
+
+            return;
         }
 
         createNewTree(root.left, val, curDepth + 1, depth);
